@@ -1,0 +1,19 @@
+﻿@using GraphicViewer.Models
+
+<div class="statusbar">
+    @if (CurrentFile is not null)
+    {
+        <span class="status-pill">@CurrentFile.FileName</span>
+        <span class="status-pill muted">@CurrentFile.DisplaySize</span>
+        <span class="status-pill muted">@FileCounter</span>
+    }
+    else
+    {
+        <span class="status-pill muted">No file loaded</span>
+    }
+</div>
+
+@code {
+    [Parameter] public SvgFileModel? CurrentFile { get; set; }
+    [Parameter] public string FileCounter { get; set; } = "—";
+}

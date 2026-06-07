@@ -1,0 +1,46 @@
+﻿@using GraphicViewer.Models
+
+<div class="svg-canvas-wrap">
+    @if (CurrentFile is not null)
+    {
+        <div class="svg-frame" style="transform: scale(@ZoomLevel.ToString("F2", System.Globalization.CultureInfo.InvariantCulture)); transform-origin: center center;">
+            @((MarkupString)CurrentFile.SvgContent)
+        </div>
+    }
+    else
+    {
+        <div class="canvas-empty">
+            <span class="empty-icon">⬡</span>
+            <p>Open a folder to load SVG files</p>
+            <small>Supports icons, illustrations, UI components</small>
+        </div>
+    }
+
+    <button class="nav-btn nav-prev"
+            disabled="@(!CanGoPrev)"
+            @onclick="HandlePrev"
+            @onclick:stopPropagation="true"
+            aria-label="Previous file">
+        &#8249;
+    </button>
+
+    <button class="nav-btn nav-next"
+            disabled="@(!CanGoNext)"
+            @onclick="HandleNext"
+            @onclick:stopPropagation="true"
+            aria-label="Next file">
+        &#8250;
+    </button>
+</div>
+
+@code {
+    [Parameter] public SvgFileModel? CurrentFile { get; set; }
+    [Parameter] public double ZoomLevel { get; set; } = 1.0;
+    [Parameter] public bool CanGoPrev { get; set; }
+    [Parameter] public bool CanGoNext { get; set; }
+    [Parameter] public EventCallback OnPrev { get; set; }
+    [Parameter] public EventCallback OnNext { get; set; }
+
+    private async Task HandlePrev() => await OnPrev.InvokeAsync();
+    private async Task HandleNext() => await OnNext.InvokeAsync();
+}

@@ -1,0 +1,73 @@
+@inherits LayoutComponentBase
+
+<div class="gv-shell">
+    <nav class="gv-nav">
+        <div class="gv-nav-brand">
+            <i class="ti ti-stack-2" aria-hidden="true"></i>
+            <span>GraphicViewer</span>
+        </div>
+
+        <div class="gv-nav-section">
+            <span class="gv-nav-label">viewers</span>
+
+            <NavLink class="gv-nav-item" href="/" Match="NavLinkMatch.All">
+                <i class="ti ti-home" aria-hidden="true"></i>
+                <span>Home</span>
+            </NavLink>
+
+            <NavLink class="gv-nav-item" href="/svg-viewer">
+                <i class="ti ti-vector-triangle" aria-hidden="true"></i>
+                <span>SVG Viewer</span>
+            </NavLink>
+
+            <NavLink class="gv-nav-item" href="/image-viewer">
+                <i class="ti ti-photo" aria-hidden="true"></i>
+                <span>PNG / JPEG</span>
+            </NavLink>
+
+            <NavLink class="gv-nav-item" href="/video-player">
+                <i class="ti ti-player-play" aria-hidden="true"></i>
+                <span>MP4 Player</span>
+            </NavLink>
+
+            <NavLink class="gv-nav-item" href="/audio-player">
+                <i class="ti ti-music" aria-hidden="true"></i>
+                <span>MP3 Player</span>
+            </NavLink>
+
+            <NavLink class="gv-nav-item" href="/youtube-player">
+                <i class="ti ti-brand-youtube" aria-hidden="true"></i>
+                <span>YouTube</span>
+            </NavLink>
+        </div>
+
+        <div class="gv-nav-footer">
+            <span class="gv-nav-label">logic dynamics</span>
+        </div>
+    </nav>
+
+    <main class="gv-content">
+        @Body
+    </main>
+
+</div>
+
+<!-- --------------------------------------------------------------------- -->
+<!-- New Perfect Vertical LogicDynamics Sticker -->
+<!-- LogicDynamics Signature Sticker -->
+<div class="floating-brand-sticker">
+    <svg class="sticker-svg" viewBox="0 0 347 346" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <circle cx="173.75" cy="173" r="172.8" fill="#1800AD" />
+        <path d="M 96.8 38.9 L 96.8 229.9 C 96.8 257.7 119.4 280.4 147.2 280.4 L 197.8 280.4"
+              stroke="#0CC0DF" stroke-width="30.7" stroke-linecap="butt" fill="none" />
+        <path d="M 112.0 54.3 L 190.0 54.3 C 233.0 54.3 267.8 89.1 267.8 132.2 L 267.8 242.1 C 267.8 279.2 237.7 309.3 200.6 309.3 L 133.4 309.3"
+              stroke="#ED1440" stroke-width="30.7" stroke-linecap="butt" fill="none" />
+    </svg>
+    <div class="sticker-divider"></div>
+    <div class="sticker-logo">
+        <span class="logic">Logic</span><span class="dynamics">Dynamics</span>
+    </div>
+    <div class="sticker-dot"></div>
+</div>
+
+<!-- --------------------------------------------------------------------- -->

@@ -1,0 +1,31 @@
+<div class="search-bar">
+    <i class="ti ti-search search-icon" aria-hidden="true"></i>
+    <input type="text"
+           class="search-input"
+           placeholder="@Placeholder"
+           value="@Value"
+           @oninput="HandleInput"
+           aria-label="@Placeholder" />
+    @if (!string.IsNullOrEmpty(Value))
+    {
+        <button class="search-clear" @onclick="Clear" aria-label="Clear search">
+            <i class="ti ti-x" aria-hidden="true"></i>
+        </button>
+    }
+</div>
+
+@code {
+    [Parameter] public string Value { get; set; } = string.Empty;
+    [Parameter] public string Placeholder { get; set; } = "search files...";
+    [Parameter] public EventCallback<string> ValueChanged { get; set; }
+
+    private async Task HandleInput(ChangeEventArgs e)
+    {
+        await ValueChanged.InvokeAsync(e.Value?.ToString() ?? string.Empty);
+    }
+
+    private async Task Clear()
+    {
+        await ValueChanged.InvokeAsync(string.Empty);
+    }
+}

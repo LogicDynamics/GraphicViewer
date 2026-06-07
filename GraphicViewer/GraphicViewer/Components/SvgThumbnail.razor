@@ -1,0 +1,17 @@
+﻿@using GraphicViewer.Models
+
+<div class="thumb-item @(IsActive ? "active" : "")"
+     @onclick="OnClick"
+     @onclick:stopPropagation="true"
+     title="@File.FileName">
+    <div class="thumb-canvas">
+        @((MarkupString)File.SvgContent)
+    </div>
+    <span class="thumb-name">@File.FileName</span>
+</div>
+
+@code {
+    [Parameter, EditorRequired] public SvgFileModel File { get; set; } = default!;
+    [Parameter] public bool IsActive { get; set; }
+    [Parameter] public EventCallback OnClick { get; set; }
+}

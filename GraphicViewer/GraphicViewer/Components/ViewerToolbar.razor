@@ -1,0 +1,140 @@
+@using Microsoft.AspNetCore.Components.Forms
+
+<div class="toolbar">
+    <InputFile OnChange="OnFilesSelected"
+               multiple
+               accept=".svg"
+               style="display:none"
+               id="svg-file-input" />
+
+    <button class="btn btn-primary"
+            onclick="document.getElementById('svg-file-input').click(); document.getElementById('svg-file-input').setAttribute('webkitdirectory','');">
+        <i class="ti ti-folder-open" aria-hidden="true"></i> Open Folder
+    </button>
+
+    @if (HasFiles)
+    {
+        <button class="btn btn-copy @(_copied ? "btn-copied" : "")"
+                @onclick="HandleCopy"
+                disabled="@(!HasFiles)">
+            <i class="ti @(_copied ? "ti-check" : "ti-copy")" aria-hidden="true"></i>
+            @(_copied ? "Copied!" : "Copy SVG")
+        </button>
+    }
+
+    <div class="toolbar-spacer"></div>
+
+    <button class="btn btn-icon" @onclick="OnZoomOut" disabled="@(!HasFiles)">
+        <i class="ti ti-zoom-out" aria-hidden="true"></i>
+    </button>
+    <span class="zoom-label">@ZoomLabel</span>
+    <button class="btn btn-icon" @onclick="OnZoomIn" disabled="@(!HasFiles)">
+        <i class="ti ti-zoom-in" aria-hidden="true"></i>
+    </button>
+    <button class="btn btn-icon" @onclick="OnZoomReset" disabled="@(!HasFiles)">
+        <i class="ti ti-maximize" aria-hidden="true"></i>
+    </button>
+
+    <div class="toolbar-divider"></div>
+    <span class="file-counter">@FileCounter</span>
+</div>
+
+@code {
+    [Parameter] public string ZoomLabel { get; set; } = "100%";
+    [Parameter] public string FileCounter { get; set; } = "0 files";
+    [Parameter] public bool HasFiles { get; set; }
+
+    [Parameter] public EventCallback<InputFileChangeEventArgs> OnFilesSelected { get; set; }
+    [Parameter] public EventCallback OnZoomIn { get; set; }
+    [Parameter] public EventCallback OnZoomOut { get; set; }
+    [Parameter] public EventCallback OnZoomReset { get; set; }
+    [Parameter] public EventCallback OnCopy { get; set; }
+
+    private bool _copied = false;
+
+    private async Task HandleCopy()
+    {
+        await OnCopy.InvokeAsync();
+        _copied = true;
+        StateHasChanged();
+        await Task.Delay(2000);
+        _copied = false;
+        StateHasChanged();
+    }
+}
+
+
+
+
+@* @using Microsoft.AspNetCore.Components.Forms
+
+<div class="toolbar">
+    <InputFile OnChange="OnFilesSelected"
+               multiple
+               accept=".svg"
+               style="display:none"
+               id="svg-file-input"
+               AdditionalAttributes="@_inputAttrs" />
+
+    <label for="svg-file-input" class="btn btn-primary" style="cursor:pointer;">
+        <i class="ti ti-folder-open" aria-hidden="true"></i> Open Folder
+    </label>
+
+    @if (HasFiles)
+    {
+        <button class="btn btn-copy @(_copied ? "btn-copied" : "")"
+                @onclick="HandleCopy"
+                title="Copy SVG markup to clipboard"
+                disabled="@(!HasFiles)">
+            <i class="ti @(_copied ? "ti-check" : "ti-copy")" aria-hidden="true"></i>
+            @(_copied ? "Copied!" : "Copy SVG")
+        </button>
+    }
+
+    <div class="toolbar-spacer"></div>
+
+    <button class="btn btn-icon" @onclick="OnZoomOut" title="Zoom Out" disabled="@(!HasFiles)">
+        <i class="ti ti-zoom-out" aria-hidden="true"></i>
+    </button>
+    <span class="zoom-label">@ZoomLabel</span>
+    <button class="btn btn-icon" @onclick="OnZoomIn" title="Zoom In" disabled="@(!HasFiles)">
+        <i class="ti ti-zoom-in" aria-hidden="true"></i>
+    </button>
+    <button class="btn btn-icon" @onclick="OnZoomReset" title="Fit to view" disabled="@(!HasFiles)">
+        <i class="ti ti-maximize" aria-hidden="true"></i>
+    </button>
+
+    <div class="toolbar-divider"></div>
+    <span class="file-counter">@FileCounter</span>
+</div>
+
+@code {
+    [Parameter] public string ZoomLabel { get; set; } = "100%";
+    [Parameter] public string FileCounter { get; set; } = "0 files";
+    [Parameter] public bool HasFiles { get; set; }
+
+    [Parameter] public EventCallback<InputFileChangeEventArgs> OnFilesSelected { get; set; }
+    [Parameter] public EventCallback OnZoomIn { get; set; }
+    [Parameter] public EventCallback OnZoomOut { get; set; }
+    [Parameter] public EventCallback OnZoomReset { get; set; }
+    [Parameter] public EventCallback OnCopy { get; set; }
+
+    private bool _copied = false;
+
+    private readonly Dictionary<string, object> _inputAttrs = new()
+    {
+        { "webkitdirectory", true },
+        { "directory", true }
+    };
+
+    private async Task HandleCopy()
+    {
+        await OnCopy.InvokeAsync();
+        _copied = true;
+        StateHasChanged();
+        await Task.Delay(2000);
+        _copied = false;
+        StateHasChanged();
+    }
+}
+ *@
