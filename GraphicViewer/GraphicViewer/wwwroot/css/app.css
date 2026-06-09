@@ -478,3 +478,728 @@ html, body {
     font-size: 13px;
 }
 #blazor-error-ui .dismiss { cursor: pointer; color: #f0c0c0; float: right; }
+
+/*---------------------------------------------------------------------------------------*/
+/* ═══════════════════════════════════════════════════════════════════
+   MP4 PLAYER — append these styles to wwwroot/css/app.css
+   ═══════════════════════════════════════════════════════════════════ */
+
+/* ── Video Thumbnail ───────────────────────────────────────────────── */
+.video-thumb-canvas {
+    height: 80px;
+    background: var(--bg-app);
+    border-radius: var(--radius-sm);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 4px;
+    position: relative;
+    overflow: hidden;
+}
+
+.video-thumb-icon {
+    font-size: 24px;
+    color: #febc2e;
+    opacity: 0.8;
+}
+
+.video-thumb-ext {
+    font-size: 9px;
+    font-family: var(--font-mono);
+    color: var(--text-muted);
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+}
+
+.thumb-item.active .video-thumb-icon {
+    opacity: 1;
+    color: var(--accent);
+}
+
+/* ── Video Canvas Wrap ─────────────────────────────────────────────── */
+.video-canvas-wrap {
+    background: #000 !important;
+    background-image: none !important;
+}
+
+/* ── Video Frame ───────────────────────────────────────────────────── */
+.video-frame {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    max-width: 900px;
+    background: #000;
+    border-radius: var(--radius-lg);
+    overflow: hidden;
+    box-shadow: 0 8px 40px rgba(0,0,0,0.6);
+}
+
+/* ── HTML5 Video Player ────────────────────────────────────────────── */
+.video-player {
+    width: 100%;
+    max-height: 540px;
+    display: block;
+    outline: none;
+    border-radius: var(--radius-lg);
+}
+
+    /* Style the native controls bar */
+    .video-player::-webkit-media-controls-panel {
+        background: linear-gradient(transparent, rgba(0,0,0,0.8));
+    }
+
+
+/* ============================================================
+   GraphicViewer — Phase 3: Video Player Styles
+   APPEND this entire block to the bottom of wwwroot/css/app.css
+   ============================================================ */
+
+/* ── Video Sidebar Thumbnails ─────────────────────────────── */
+
+/*.video-thumb {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 8px 12px;
+    cursor: pointer;
+    border-radius: 6px;
+    transition: background 0.15s ease;
+    border-left: 3px solid transparent;
+    margin: 2px 6px;
+}
+
+    .video-thumb:hover {
+        background: var(--bg-elevated);
+    }
+
+    .video-thumb.selected {
+        background: rgba(79, 142, 247, 0.15);
+        border-left-color: var(--accent);
+    }
+
+.video-thumb-preview {
+    position: relative;
+    width: 56px;
+    height: 40px;
+    background: #0d0d14;
+    border-radius: 4px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+    overflow: hidden;
+    border: 1px solid rgba(255,255,255,0.06);
+}
+
+.video-play-icon {
+    font-size: 18px;
+    color: rgba(255,255,255,0.4);
+}
+
+.video-thumb.selected .video-play-icon {
+    color: var(--accent);
+}
+
+.video-ext-badge {
+    position: absolute;
+    bottom: 2px;
+    right: 3px;
+    font-size: 8px;
+    font-weight: 700;
+    color: rgba(255,255,255,0.5);
+    letter-spacing: 0.5px;
+}
+
+.video-thumb-info {
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+    overflow: hidden;
+}
+
+.video-thumb-name {
+    font-size: 12px;
+    color: var(--text-primary);
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.video-thumb.selected .video-thumb-name {
+    color: var(--accent);
+}
+
+.video-thumb-size {
+    font-size: 10px;
+    color: rgba(255,255,255,0.35);
+}*/
+
+/* ── Video Stage ──────────────────────────────────────────── */
+
+/*.video-stage {
+    flex: 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: #000;
+    overflow: hidden;
+    position: relative;
+}
+
+.video-canvas-wrapper {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.video-element {
+    max-width: 100%;
+    max-height: 100%;
+    object-fit: contain;
+    cursor: pointer;
+    display: block;
+}
+
+.video-canvas-empty {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 16px;
+    color: rgba(255,255,255,0.2);
+    user-select: none;
+}
+
+    .video-canvas-empty .empty-icon {
+        font-size: 64px;
+        opacity: 0.3;
+    }
+
+    .video-canvas-empty p {
+        font-size: 14px;
+        margin: 0;
+    }*/
+
+/* ── Video Toolbar ────────────────────────────────────────── */
+
+/*.video-toolbar {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    background: var(--bg-elevated);
+    border-bottom: 1px solid rgba(255,255,255,0.06);
+    padding: 6px 12px;
+    gap: 8px;
+    flex-shrink: 0;
+    height: 48px;
+}
+
+.toolbar-center {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.toolbar-right {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.play-btn {
+    width: 38px !important;
+    height: 38px !important;
+    font-size: 20px !important;
+    background: var(--accent) !important;
+    color: #fff !important;
+    border-radius: 50% !important;
+}
+
+    .play-btn:hover {
+        background: #3a7ae0 !important;
+    }
+
+    .play-btn:disabled {
+        background: rgba(79,142,247,0.3) !important;
+        cursor: not-allowed;
+    }*/
+
+/* ── Volume Slider ─────────────────────────────────────────── */
+
+/*.volume-slider {
+    -webkit-appearance: none;
+    appearance: none;
+    width: 80px;
+    height: 4px;
+    border-radius: 2px;
+    background: rgba(255,255,255,0.15);
+    outline: none;
+    cursor: pointer;
+}
+
+    .volume-slider::-webkit-slider-thumb {
+        -webkit-appearance: none;
+        width: 14px;
+        height: 14px;
+        border-radius: 50%;
+        background: var(--accent);
+        cursor: pointer;
+        transition: transform 0.1s;
+    }
+
+        .volume-slider::-webkit-slider-thumb:hover {
+            transform: scale(1.2);
+        }
+
+    .volume-slider:disabled {
+        opacity: 0.3;
+        cursor: not-allowed;
+    }*/
+
+/* ── Progress Bar ──────────────────────────────────────────── */
+
+/*.video-progress-bar-wrapper {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    background: var(--bg-elevated);
+    border-top: 1px solid rgba(255,255,255,0.06);
+    padding: 8px 14px;
+    flex-shrink: 0;
+}
+
+.time-display {
+    font-size: 11px;
+    color: rgba(255,255,255,0.5);
+    font-variant-numeric: tabular-nums;
+    white-space: nowrap;
+    min-width: 40px;
+}
+
+.progress-track {
+    flex: 1;
+    height: 4px;
+    background: rgba(255,255,255,0.12);
+    border-radius: 2px;
+    position: relative;
+    cursor: pointer;
+    transition: height 0.15s ease;
+}
+
+    .progress-track:hover {
+        height: 6px;
+    }
+
+.progress-fill {
+    height: 100%;
+    background: var(--accent);
+    border-radius: 2px;
+    pointer-events: none;
+    transition: width 0.1s linear;
+}
+
+.progress-thumb {
+    position: absolute;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    width: 12px;
+    height: 12px;
+    border-radius: 50%;
+    background: #fff;
+    pointer-events: none;
+    opacity: 0;
+    transition: opacity 0.15s;
+}
+
+.progress-track:hover .progress-thumb {
+    opacity: 1;
+}*/
+
+/* ── Video Status Bar ──────────────────────────────────────── */
+
+/*.video-status-bar {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    background: var(--bg-surface);
+    border-top: 1px solid rgba(255,255,255,0.05);
+    padding: 5px 14px;
+    flex-shrink: 0;
+    height: 32px;
+}
+
+.status-left {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    overflow: hidden;
+    font-size: 11px;
+    color: rgba(255,255,255,0.45);
+}
+
+.status-filename {
+    color: var(--text-primary);
+    font-size: 11px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    max-width: 320px;
+}
+
+.status-badge {
+    background: rgba(79,142,247,0.2);
+    color: var(--accent);
+    padding: 1px 6px;
+    border-radius: 4px;
+    font-size: 10px;
+    font-weight: 600;
+    letter-spacing: 0.5px;
+    flex-shrink: 0;
+}
+
+.status-size {
+    white-space: nowrap;
+    flex-shrink: 0;
+}
+
+.status-hint {
+    font-size: 11px;
+    color: rgba(255,255,255,0.25);
+    font-style: italic;
+}
+
+.status-right {
+    flex-shrink: 0;
+    margin-left: 12px;
+}
+
+.status-position {
+    font-size: 11px;
+    color: rgba(255,255,255,0.4);
+    white-space: nowrap;
+}
+
+.status-divider {
+    color: rgba(255,255,255,0.15);
+}*/
+
+
+/* ============================================================
+   Phase 3 — Layout Fix Patch
+   APPEND to the very bottom of wwwroot/css/app.css
+   ============================================================ */
+
+/* ── Fix: viewer-main must be a bounded flex column ───────── */
+/* Without this the video stage has no height ceiling and overflows */
+
+/*.viewer-main {
+    display: flex;
+    flex-direction: column;
+    flex: 1;
+    min-height: 0;*/ /* critical — lets flex children shrink below content size */
+    /*overflow: hidden;
+}*/
+
+/* ── Fix: video-stage fills remaining space, never overflows ─ */
+
+/*.video-stage {
+    flex: 1;
+    min-height: 0;*/ /* same — allows it to shrink inside the flex column */
+    /*overflow: hidden;
+}
+
+.video-canvas-wrapper {
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+}*/
+
+/* ── Fix: video element strictly contained ───────────────────*/
+
+/*.video-element {
+    max-width: 100%;
+    max-height: 100%;
+    width: auto;
+    height: auto;
+    object-fit: contain;
+    display: block;
+}*/
+
+/* ── Fix: toolbar-group needs flex so buttons are visible ──── */
+
+/*.toolbar-group {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+}*/
+
+/* ── Fix: toolbar btn label hidden on small toolbar ─────────── */
+
+/*.btn-label {
+    font-size: 12px;
+    white-space: nowrap;
+}*/
+
+/* --------------------------------------------------------------------------------------*/
+
+
+
+
+/* ------------------------ Animated LD sticker!! LogicDynamics -------------------------- 
+
+                  LOGICDYNAMICS SIGNATURE — FLOATING BRAND STICKER
+              Fixed pill-shaped brand mark — rides the right edge of the
+                viewport across every page in the app via MainLayout.
+
+   ---------------------------------------------------------------------------------------
+   Sticker Container — Fixed pill on the right viewport edge.
+   position: fixed keeps it on screen as the user scrolls.
+   --------------------------------------------------------------------------------------- */
+
+.floating-brand-sticker {
+    position: fixed; /* stays fixed to the viewport  */
+    top: 50%;
+    right: 18px;
+    transform: translateY(-50%);
+    z-index: 1000;
+    background: linear-gradient(180deg, #020b18 0%, #06062E 100%);
+    border: 2px solid #0cc0df;
+    border-radius: 35px;
+    padding: 18px 12px;
+    width: 56px;
+    height: 280px;
+    box-shadow: 0 0 20px rgba(12,192,223,0.25), 0 10px 40px rgba(0,0,0,0.5);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+    cursor: pointer;
+    transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+    animation: stickerBreath 20s cubic-bezier(0.4,0,0.2,1) infinite;
+}
+
+    .floating-brand-sticker:hover {
+        transform: translateY(-50%) translateX(-10px) scale(1.08);
+        box-shadow: 0 0 30px rgba(12,192,223,0.5), 0 15px 50px rgba(0,0,0,0.6);
+        border-color: #4FC3F7;
+    }
+
+/* ---------------------------------------------------------------
+   Breath Animation — 20s cycle
+   Slides in → stays 15s → ghosts out → rests 5s → repeats
+   --------------------------------------------------------------- */
+@keyframes stickerBreath {
+    0% {
+        opacity: 0;
+        transform: translateY(-50%) translateX(80px) scale(0.8);
+    }
+
+    4% {
+        opacity: 1;
+        transform: translateY(-50%) translateX(0) scale(1);
+    }
+
+    75% {
+        opacity: 1;
+        transform: translateY(-50%) translateX(0) scale(1);
+    }
+
+    80% {
+        opacity: 0;
+        transform: translateY(-50%) translateX(80px) scale(0.8);
+    }
+
+    100% {
+        opacity: 0;
+        transform: translateY(-50%) translateX(80px) scale(0.8);
+    }
+}
+
+/* ---------------------------------------------------------------
+   SVG Logo — Rocking rotation 6s cycle
+   Holds upright 2s → snaps -90° → holds 2s → snaps back
+   --------------------------------------------------------------- */
+.sticker-svg {
+    width: 32px;
+    height: 32px;
+    flex-shrink: 0;
+    transform-origin: center center;
+    animation: rockLogo 6s cubic-bezier(0.4,0,0.2,1) 1s infinite;
+}
+
+@keyframes rockLogo {
+    0% {
+        transform: rotate(0deg);
+    }
+
+    33.3% {
+        transform: rotate(0deg);
+    }
+
+    43.3% {
+        transform: rotate(-90deg);
+    }
+
+    76.6% {
+        transform: rotate(-90deg);
+    }
+
+    86.6% {
+        transform: rotate(0deg);
+    }
+
+    100% {
+        transform: rotate(0deg);
+    }
+}
+
+/* ---------------------------------------------------------------
+   Divider — thin cyan separator between logo and text
+   --------------------------------------------------------------- */
+.sticker-divider {
+    width: 28px;
+    height: 1px;
+    background: rgba(12,192,223,0.3);
+    flex-shrink: 0;
+}
+
+/* ---------------------------------------------------------------
+   Brand Text — vertical "LogicDynamics" label
+   writing-mode + rotate(180deg) reads bottom-up along the pill
+   --------------------------------------------------------------- */
+.sticker-logo {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-weight: 800;
+    font-size: 17px;
+    letter-spacing: 3px;
+    writing-mode: vertical-rl;
+    transform: rotate(180deg);
+    white-space: nowrap;
+}
+
+    .sticker-logo .logic {
+        color: #F0F4FF;
+    }
+
+    .sticker-logo .dynamics {
+        color: #0cc0df;
+    }
+
+/* ---------------------------------------------------------------
+   Pulse Dot — red heartbeat at the base of the sticker
+   --------------------------------------------------------------- */
+.sticker-dot {
+    width: 6px;
+    height: 6px;
+    border-radius: 50%;
+    background: #ed1440;
+    box-shadow: 0 0 8px #ed1440;
+    animation: dotPulse 2s ease-in-out infinite;
+    flex-shrink: 0;
+}
+
+@keyframes dotPulse {
+    0%, 100% {
+        transform: scale(1);
+        opacity: 1;
+    }
+
+    50% {
+        transform: scale(1.5);
+        opacity: 0.6;
+    }
+}
+
+/* ---------------------------------------------------------------
+   Responsive — shrink on tablet, hide on mobile
+   --------------------------------------------------------------- */
+@media (max-width: 768px) {
+    .floating-brand-sticker {
+        right: 8px;
+        width: 48px;
+        height: 240px;
+    }
+
+    .sticker-logo {
+        font-size: 15px;
+    }
+
+    .sticker-svg {
+        width: 28px;
+        height: 28px;
+    }
+}
+
+@media (max-width: 480px) {
+    .floating-brand-sticker {
+        display: none;
+    }
+}
+
+/*---------------------------------------------------------------------------------------------*/
+
+/* ═══════════════════════════════════════════════════════════════════
+   PNG / JPEG VIEWER — append these styles to wwwroot/css/app.css
+   ═══════════════════════════════════════════════════════════════════ */
+
+/* ── Image Thumbnail ───────────────────────────────────────────────── */
+.img-thumb-canvas {
+    height: 80px;
+    overflow: hidden;
+}
+
+    .img-thumb-canvas img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        border-radius: 4px;
+        display: block;
+    }
+
+/* ── Image Frame ───────────────────────────────────────────────────── */
+.img-frame {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: var(--bg-elevated);
+    border: 1px solid var(--border);
+    border-radius: var(--radius-lg);
+    padding: 16px;
+    min-width: 200px;
+    min-height: 200px;
+    transition: transform 0.2s cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+
+.img-display {
+    display: block;
+    max-width: 700px;
+    max-height: 520px;
+    width: auto;
+    height: auto;
+    object-fit: contain;
+    border-radius: var(--radius-sm);
+    pointer-events: none;
+    /* Subtle checkerboard for transparent PNGs */
+    background-image: linear-gradient(45deg, #2a2a30 25%, transparent 25%), linear-gradient(-45deg, #2a2a30 25%, transparent 25%), linear-gradient(45deg, transparent 75%, #2a2a30 75%), linear-gradient(-45deg, transparent 75%, #2a2a30 75%);
+    background-size: 16px 16px;
+    background-position: 0 0, 0 8px, 8px -8px, -8px 0px;
+    background-color: var(--bg-app);
+}
+
+/* ── Download Button ───────────────────────────────────────────────── */
+.btn-download {
+    background: transparent;
+    border-color: var(--border);
+    color: var(--text-secondary);
+}
+
+    .btn-download:hover:not(:disabled) {
+        background: rgba(40, 200, 64, 0.1);
+        border-color: rgba(40, 200, 64, 0.4);
+        color: var(--success);
+    }

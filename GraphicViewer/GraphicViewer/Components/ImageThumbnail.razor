@@ -1,0 +1,19 @@
+@using GraphicViewer.Models
+
+<div class="thumb-item @(IsActive ? "active" : "")"
+     @onclick="OnClick"
+     @onclick:stopPropagation="true"
+     title="@File.FileName">
+    <div class="thumb-canvas img-thumb-canvas">
+        <img src="@File.DataUrl"
+             alt="@File.FileName"
+             loading="lazy" />
+    </div>
+    <span class="thumb-name">@File.FileName</span>
+</div>
+
+@code {
+    [Parameter, EditorRequired] public ImageFileModel File { get; set; } = default!;
+    [Parameter] public bool IsActive { get; set; }
+    [Parameter] public EventCallback OnClick { get; set; }
+}

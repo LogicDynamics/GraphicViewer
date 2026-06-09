@@ -1,8 +1,142 @@
-@* VideoPlayerPage.razor *@
 @page "/video-player"
+@using Microsoft.AspNetCore.Components.Forms
+@using GraphicViewer.Models
+@using GraphicViewer.Services
+@using GraphicViewer.Components
+@inject VideoPlayerService PlayerService
+@implements IDisposable
+
 <PageTitle>MP4 Player — GraphicViewer</PageTitle>
-<div class="placeholder-page">
-    <div class="placeholder-icon" style="color:#febc2e"><i class="ti ti-player-play" aria-hidden="true"></i></div>
-    <h1>MP4 Player</h1>
-    <p class="placeholder-hint">Coming in Phase 2 — HTML5 video player with folder playlist and fullscreen.</p>
+
+<div class="app-shell" @onkeydown="HandleKeyDown" tabindex="0" @ref="_appRef">
+
+    <div class="titlebar">
+        <div class="window-dots">
+            <span class="dot dot-r"></span>
+            <span class="dot dot-y"></span>
+            <span class="dot dot-g"></span>
+        </div>
+        <span class="titlebar-name">MP4 Player</span>
+        <span class="titlebar-meta">
+            @(PlayerService.HasFiles
+                ? $"{PlayerService.Files.Count} videos"
+                : "no folder loaded")
+        </span>
+    </div>
+
+    <VideoToolbar FileCounter="@PlayerService.FileCounter"
+                  HasFiles="@PlayerService.HasFiles"
+                  OnFilesSelected="HandleFilesSelected"
+                  OnCopy="HandleCopy" />
+
+    <div class="main-layout">
+
+        <aside class="sidebar">
+            @if (PlayerService.HasFiles)
+            {
+                <SearchBar Value="@_searchTerm"
+                           ValueChanged="OnSearchChanged"
+                           Placeholder="search videos..." />
+            }
+            else
+            {
+                <div class="sidebar-header">videos</div>
+            }
+
+            @if (!PlayerService.HasFiles)
+            {
+                <div class="sidebar-empty">
+                    <i class="ti ti-player-play"
+                       style="font-size:32px;opacity:0.3;color:var(--text-muted)"
+                       aria-hidden="true"></i>
+                    <p>Open a folder<br />to get started</p>
+                </div>
+            }
+            else if (!FilteredFiles.Any())
+            {
+                <div class="sidebar-empty">
+                    <span style="font-size:20px">🔍</span>
+                    <p>No files match<br />"@_searchTerm"</p>
+                </div>
+            }
+            else
+            {
+                @foreach (var file in FilteredFiles)
+                {
+                    <VideoThumbnail File="file"
+                                    IsActive="file.Index == PlayerService.CurrentIndex"
+                                    OnClick="@(() => PlayerService.SelectFile(file.Index))" />
+                }
+            }
+        </aside>
+
+        <div class="viewer-column">
+            <VideoCanvas CurrentFile="PlayerService.CurrentFile"
+                         CanGoPrev="@PlayerService.CanGoPrev"
+                         CanGoNext="@PlayerService.CanGoNext"
+                         OnPrev="@(() => PlayerService.NavigatePrev())"
+                         OnNext="@(() => PlayerService.NavigateNext())"
+                         OnPlayStateChanged="HandlePlayStateChanged" />
+
+            <VideoStatusBar CurrentFile="PlayerService.CurrentFile"
+                            FileCounter="@PlayerService.FileCounter"
+                            IsPlaying="@PlayerService.IsPlaying" />
+        </div>
+
+    </div>
 </div>
+
+@code {
+    private ElementReference _appRef;
+    private string _searchTerm = string.Empty;
+
+    private IEnumerable<VideoFileModel> FilteredFiles =>
+        string.IsNullOrWhiteSpace(_searchTerm)
+            ? PlayerService.Files
+            : PlayerService.Files.Where(f =>
+                f.FileName.Contains(_searchTerm, StringComparison.OrdinalIgnoreCase));
+
+    protected override void OnInitialized()
+    {
+        PlayerService.OnStateChanged += OnPlayerStateChanged;
+    }
+
+    protected override async Task OnAfterRenderAsync(bool firstRender)
+    {
+        if (firstRender) await _appRef.FocusAsync();
+    }
+
+    private async Task HandleFilesSelected(InputFileChangeEventArgs e)
+    {
+        _searchTerm = string.Empty;
+        await PlayerService.LoadFilesAsync(e.GetMultipleFiles(200));
+    }
+
+    private async Task HandleCopy()
+    {
+        await PlayerService.CopyFileNameAsync();
+    }
+
+    private void HandlePlayStateChanged(bool isPlaying)
+    {
+        PlayerService.SetPlaying(isPlaying);
+    }
+
+    private void OnSearchChanged(string value) => _searchTerm = value;
+
+    private void HandleKeyDown(KeyboardEventArgs e)
+    {
+        switch (e.Key)
+        {
+            case "ArrowLeft":  PlayerService.NavigatePrev(); break;
+            case "ArrowRight": PlayerService.NavigateNext(); break;
+        }
+    }
+
+    private void OnPlayerStateChanged() => InvokeAsync(StateHasChanged);
+
+    public void Dispose()
+    {
+        PlayerService.OnStateChanged -= OnPlayerStateChanged;
+    }
+}

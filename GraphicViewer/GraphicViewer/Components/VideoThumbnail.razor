@@ -1,0 +1,20 @@
+@using GraphicViewer.Models
+
+<div class="thumb-item @(IsActive ? "active" : "")"
+     @onclick="OnClick"
+     @onclick:stopPropagation="true"
+     title="@File.FileName">
+    <div class="thumb-canvas video-thumb-canvas">
+        <div class="video-thumb-icon">
+            <i class="ti ti-player-play-filled" aria-hidden="true"></i>
+        </div>
+        <span class="video-thumb-ext">@File.Extension</span>
+    </div>
+    <span class="thumb-name">@File.FileName</span>
+</div>
+
+@code {
+    [Parameter, EditorRequired] public VideoFileModel File { get; set; } = default!;
+    [Parameter] public bool IsActive { get; set; }
+    [Parameter] public EventCallback OnClick { get; set; }
+}

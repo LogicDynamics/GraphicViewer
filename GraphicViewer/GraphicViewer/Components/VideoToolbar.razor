@@ -1,0 +1,48 @@
+@using Microsoft.AspNetCore.Components.Forms
+
+<div class="toolbar">
+    <InputFile OnChange="OnFilesSelected"
+               multiple
+               accept=".mp4,.webm,.ogv,.mov,.avi"
+               style="display:none"
+               id="video-file-input" />
+
+    <button class="btn btn-primary"
+            onclick="document.getElementById('video-file-input').click(); document.getElementById('video-file-input').setAttribute('webkitdirectory','');">
+        <i class="ti ti-folder-open" aria-hidden="true"></i> Open Folder
+    </button>
+
+    @if (HasFiles)
+    {
+        <button class="btn btn-copy @(_copied ? "btn-copied" : "")"
+                @onclick="HandleCopy"
+                title="Copy filename to clipboard">
+            <i class="ti @(_copied ? "ti-check" : "ti-copy")" aria-hidden="true"></i>
+            @(_copied ? "Copied!" : "Copy Name")
+        </button>
+    }
+
+    <div class="toolbar-spacer"></div>
+
+    <span class="file-counter">@FileCounter</span>
+</div>
+
+@code {
+    [Parameter] public string FileCounter { get; set; } = "0 files";
+    [Parameter] public bool HasFiles { get; set; }
+
+    [Parameter] public EventCallback<InputFileChangeEventArgs> OnFilesSelected { get; set; }
+    [Parameter] public EventCallback OnCopy { get; set; }
+
+    private bool _copied = false;
+
+    private async Task HandleCopy()
+    {
+        await OnCopy.InvokeAsync();
+        _copied = true;
+        StateHasChanged();
+        await Task.Delay(2000);
+        _copied = false;
+        StateHasChanged();
+    }
+}

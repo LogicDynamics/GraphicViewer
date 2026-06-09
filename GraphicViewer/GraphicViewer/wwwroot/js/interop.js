@@ -1,12 +1,11 @@
 window.GraphicViewer = {
 
-    // Copy text to clipboard
+    // ── Clipboard ─────────────────────────────────────────────────────────────
     copyToClipboard: async function (text) {
         try {
             await navigator.clipboard.writeText(text);
             return true;
         } catch (err) {
-            // Fallback for older browsers
             const ta = document.createElement('textarea');
             ta.value = text;
             ta.style.position = 'fixed';
@@ -20,8 +19,7 @@ window.GraphicViewer = {
         }
     },
 
-    // Normalize an SVG string — ensures viewBox, width, height are present
-    // so Blazor can render it without collapsing to 0x0
+    // ── SVG Normalization ─────────────────────────────────────────────────────
     normalizeSvg: function (svgContent) {
         const parser = new DOMParser();
         const doc = parser.parseFromString(svgContent, 'image/svg+xml');
@@ -32,7 +30,6 @@ window.GraphicViewer = {
         const h = svg.getAttribute('height');
         let vb = svg.getAttribute('viewBox');
 
-        // Build viewBox from width/height if missing
         if (!vb && w && h) {
             const pw = parseFloat(w);
             const ph = parseFloat(h);
@@ -42,7 +39,6 @@ window.GraphicViewer = {
             }
         }
 
-        // Build width/height from viewBox if missing
         if (vb && (!w || !h)) {
             const parts = vb.trim().split(/[\s,]+/);
             if (parts.length === 4) {
@@ -51,13 +47,52 @@ window.GraphicViewer = {
             }
         }
 
-        // If still no dimensions, set a safe default
-        if (!svg.getAttribute('viewBox')) {
-            svg.setAttribute('viewBox', '0 0 100 100');
-        }
-        if (!svg.getAttribute('width'))  svg.setAttribute('width',  '100%');
+        if (!svg.getAttribute('viewBox')) svg.setAttribute('viewBox', '0 0 100 100');
+        if (!svg.getAttribute('width')) svg.setAttribute('width', '100%');
         if (!svg.getAttribute('height')) svg.setAttribute('height', '100%');
 
         return new XMLSerializer().serializeToString(svg);
+    },
+
+    // ── Image Download ────────────────────────────────────────────────────────
+    downloadImage: function (dataUrl, fileName) {
+        const a = document.createElement('a');
+        a.href = dataUrl;
+        a.download = fileName;
+        document.body.appendChild(a);
+        a.click();
+        document.body.removeChild(a);
+    },
+
+    // ── Blob URL Management (for video/audio) ─────────────────────────────────
+    createBlobUrl: function (bytes, mimeType) {
+        const blob = new Blob([new Uint8Array(bytes)], { type: mimeType });
+        return URL.createObjectURL(blob);
+    },
+
+    revokeBlobUrl: function (url) {
+        if (url && url.startsWith('blob:')) {
+            URL.revokeObjectURL(url);
+        }
+    },
+
+    // ── Video Controls ────────────────────────────────────────────────────────
+    stopVideo: function (videoElement) {
+        if (videoElement) {
+            videoElement.pause();
+            videoElement.currentTime = 0;
+        }
+    },
+
+    playVideo: function (videoElement) {
+        if (videoElement) {
+            videoElement.play();
+        }
+    },
+
+    pauseVideo: function (videoElement) {
+        if (videoElement) {
+            videoElement.pause();
+        }
     }
 };

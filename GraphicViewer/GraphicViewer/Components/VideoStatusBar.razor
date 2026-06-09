@@ -1,0 +1,22 @@
+@using GraphicViewer.Models
+
+<div class="statusbar">
+    @if (CurrentFile is not null)
+    {
+        <span class="status-pill">@CurrentFile.FileName</span>
+        <span class="status-pill muted">@CurrentFile.DisplaySize</span>
+        <span class="status-pill muted">@CurrentFile.Extension</span>
+        <span class="status-pill muted">@(IsPlaying ? "▶ Playing" : "⏸ Paused")</span>
+        <span class="status-pill muted">@FileCounter</span>
+    }
+    else
+    {
+        <span class="status-pill muted">No video loaded</span>
+    }
+</div>
+
+@code {
+    [Parameter] public VideoFileModel? CurrentFile { get; set; }
+    [Parameter] public string FileCounter { get; set; } = "—";
+    [Parameter] public bool IsPlaying { get; set; }
+}
