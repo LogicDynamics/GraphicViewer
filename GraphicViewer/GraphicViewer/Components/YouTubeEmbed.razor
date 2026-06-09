@@ -1,0 +1,65 @@
+@using GraphicViewer.Models
+
+<div class="yt-stage">
+    @if (CurrentVideo is not null)
+    {
+        <div class="yt-frame-wrap">
+            <iframe @key="CurrentVideo.VideoId"
+                    src="@CurrentVideo.EmbedUrl"
+                    class="yt-iframe"
+                    title="@CurrentVideo.Title"
+                    frameborder="0"
+                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                    allowfullscreen>
+            </iframe>
+        </div>
+
+        <div class="yt-video-info">
+            <div class="yt-video-title">@CurrentVideo.Title</div>
+            <a href="@CurrentVideo.Url"
+               target="_blank"
+               class="yt-video-link"
+               title="Open on YouTube">
+                <i class="ti ti-brand-youtube" aria-hidden="true"></i>
+                Open on YouTube
+            </a>
+        </div>
+
+        <div class="yt-nav-row">
+            <button class="btn btn-icon"
+                    disabled="@(!CanGoPrev)"
+                    @onclick="OnPrev"
+                    title="Previous video">
+                <i class="ti ti-player-skip-back-filled" aria-hidden="true"></i>
+            </button>
+
+            <span class="file-counter">@VideoCounter</span>
+
+            <button class="btn btn-icon"
+                    disabled="@(!CanGoNext)"
+                    @onclick="OnNext"
+                    title="Next video">
+                <i class="ti ti-player-skip-forward-filled" aria-hidden="true"></i>
+            </button>
+        </div>
+    }
+    else
+    {
+        <div class="canvas-empty">
+            <i class="ti ti-brand-youtube"
+               style="font-size:72px;opacity:0.15;color:#ff0000"
+               aria-hidden="true"></i>
+            <p>Paste a YouTube URL to get started</p>
+            <small>Your playlist saves automatically between sessions</small>
+        </div>
+    }
+</div>
+
+@code {
+    [Parameter] public YouTubeVideoModel? CurrentVideo { get; set; }
+    [Parameter] public bool CanGoPrev { get; set; }
+    [Parameter] public bool CanGoNext { get; set; }
+    [Parameter] public string VideoCounter { get; set; } = "—";
+    [Parameter] public EventCallback OnPrev { get; set; }
+    [Parameter] public EventCallback OnNext { get; set; }
+}

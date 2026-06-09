@@ -1,0 +1,43 @@
+@using GraphicViewer.Models
+
+<div class="yt-playlist-item @(IsActive ? "active" : "")"
+     @onclick="OnClick"
+     @onclick:stopPropagation="true"
+     title="@Video.Title">
+
+    <div class="yt-thumb-wrap">
+        <img src="@Video.ThumbnailUrl"
+             alt="@Video.Title"
+             class="yt-thumb"
+             loading="lazy"
+             onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';" />
+        <div class="yt-thumb-fallback" style="display:none">
+            <i class="ti ti-brand-youtube" aria-hidden="true"></i>
+        </div>
+        @if (IsActive)
+        {
+            <div class="yt-thumb-playing">
+                <i class="ti ti-player-play-filled" aria-hidden="true"></i>
+            </div>
+        }
+    </div>
+
+    <div class="yt-item-info">
+        <span class="yt-item-title">@Video.Title</span>
+        <span class="yt-item-date">@Video.AddedOn</span>
+    </div>
+
+    <button class="yt-remove-btn"
+            @onclick:stopPropagation="true"
+            @onclick="OnRemove"
+            title="Remove from playlist">
+        <i class="ti ti-x" aria-hidden="true"></i>
+    </button>
+</div>
+
+@code {
+    [Parameter, EditorRequired] public YouTubeVideoModel Video { get; set; } = default!;
+    [Parameter] public bool IsActive { get; set; }
+    [Parameter] public EventCallback OnClick { get; set; }
+    [Parameter] public EventCallback OnRemove { get; set; }
+}

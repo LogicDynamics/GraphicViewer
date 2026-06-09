@@ -1,0 +1,31 @@
+@using Microsoft.AspNetCore.Components.Routing
+
+<a href="@Route" class="viewer-card">
+    <div class="viewer-card-icon" style="color: @IconColor; background: @IconBg; border-color: @BorderColor;">
+        <i class="ti @Icon" aria-hidden="true"></i>
+    </div>
+    <div class="viewer-card-body">
+        <div class="viewer-card-title">@Title</div>
+        <div class="viewer-card-desc">@Description</div>
+    </div>
+    <div class="viewer-card-formats">
+        @foreach (var fmt in Formats)
+        {
+            <span class="format-badge">@fmt</span>
+        }
+    </div>
+    <div class="viewer-card-arrow">
+        <i class="ti ti-arrow-right" aria-hidden="true"></i>
+    </div>
+</a>
+
+@code {
+    [Parameter] public string Route { get; set; } = "/";
+    [Parameter] public string Title { get; set; } = string.Empty;
+    [Parameter] public string Description { get; set; } = string.Empty;
+    [Parameter] public string Icon { get; set; } = "ti-file";
+    [Parameter] public string IconColor { get; set; } = "#4f8ef7";
+    [Parameter] public string IconBg { get; set; } = "rgba(79,142,247,0.12)";
+    [Parameter] public string BorderColor { get; set; } = "rgba(79,142,247,0.3)";
+    [Parameter] public List<string> Formats { get; set; } = [];
+}

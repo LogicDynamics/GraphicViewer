@@ -1,0 +1,32 @@
+@using GraphicViewer.Models
+
+<div class="statusbar">
+    @if (CurrentFile is not null)
+    {
+        <span class="status-pill">@CurrentFile.Title</span>
+        <span class="status-pill muted">@CurrentFile.DisplaySize</span>
+        <span class="status-pill muted">@CurrentFile.Extension</span>
+        <span class="status-pill muted">@(IsPlaying ? "▶ Playing" : "⏸ Paused")</span>
+        @if (IsShuffle)
+        {
+            <span class="status-pill muted">⇀ Shuffle</span>
+        }
+        @if (IsRepeat)
+        {
+            <span class="status-pill muted">↻ Repeat</span>
+        }
+        <span class="status-pill muted">@FileCounter</span>
+    }
+    else
+    {
+        <span class="status-pill muted">No track loaded</span>
+    }
+</div>
+
+@code {
+    [Parameter] public AudioFileModel? CurrentFile { get; set; }
+    [Parameter] public string FileCounter { get; set; } = "—";
+    [Parameter] public bool IsPlaying { get; set; }
+    [Parameter] public bool IsShuffle { get; set; }
+    [Parameter] public bool IsRepeat { get; set; }
+}

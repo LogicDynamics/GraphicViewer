@@ -1,0 +1,37 @@
+@using GraphicViewer.Models
+
+<div class="audio-track-item @(IsActive ? "active" : "") @(IsPlaying && IsActive ? "playing" : "")"
+     @onclick="OnClick"
+     @onclick:stopPropagation="true"
+     title="@File.Title">
+
+    <div class="track-number">
+        @if (IsActive && IsPlaying)
+        {
+            <div class="track-bars">
+                <span></span><span></span><span></span>
+            </div>
+        }
+        else
+        {
+            <span class="track-num-label">@(File.Index + 1)</span>
+        }
+    </div>
+
+    <div class="track-info">
+        <span class="track-title">@File.Title</span>
+        <span class="track-meta">@File.Extension &bull; @File.DisplaySize</span>
+    </div>
+
+    @if (IsActive)
+    {
+        <i class="ti ti-volume track-active-icon" aria-hidden="true"></i>
+    }
+</div>
+
+@code {
+    [Parameter, EditorRequired] public AudioFileModel File { get; set; } = default!;
+    [Parameter] public bool IsActive { get; set; }
+    [Parameter] public bool IsPlaying { get; set; }
+    [Parameter] public EventCallback OnClick { get; set; }
+}

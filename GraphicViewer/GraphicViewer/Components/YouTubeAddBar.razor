@@ -1,0 +1,68 @@
+<div class="yt-add-bar">
+    <div class="yt-input-group">
+        <i class="ti ti-brand-youtube yt-input-icon" aria-hidden="true"></i>
+        <input type="text"
+               class="yt-url-input"
+               placeholder="Paste YouTube URL..."
+               value="@UrlValue"
+               @oninput="@(e => OnUrlChanged.InvokeAsync(e.Value?.ToString() ?? string.Empty))"
+               @onkeydown="HandleKeyDown" />
+    </div>
+
+    <div class="yt-input-group">
+        <i class="ti ti-tag yt-input-icon" aria-hidden="true"></i>
+        <input type="text"
+               class="yt-title-input"
+               placeholder="Custom title (optional)"
+               value="@TitleValue"
+               @oninput="@(e => OnTitleChanged.InvokeAsync(e.Value?.ToString() ?? string.Empty))"
+               @onkeydown="HandleKeyDown" />
+    </div>
+
+    <button class="btn btn-primary yt-add-btn"
+            @onclick="OnAdd"
+            disabled="@string.IsNullOrWhiteSpace(UrlValue)"
+            title="Add to playlist">
+        <i class="ti ti-playlist-add" aria-hidden="true"></i>
+        Add
+    </button>
+
+    @if (HasVideos)
+    {
+        <button class="btn btn-icon yt-copy-btn"
+                @onclick="OnCopy"
+                title="Copy current URL">
+            <i class="ti ti-copy" aria-hidden="true"></i>
+        </button>
+
+        <button class="btn btn-icon yt-clear-btn"
+                @onclick="OnClear"
+                title="Clear playlist">
+            <i class="ti ti-trash" aria-hidden="true"></i>
+        </button>
+    }
+
+    @if (!string.IsNullOrEmpty(ErrorMessage))
+    {
+        <span class="yt-error">@ErrorMessage</span>
+    }
+</div>
+
+@code {
+    [Parameter] public string UrlValue { get; set; } = string.Empty;
+    [Parameter] public string TitleValue { get; set; } = string.Empty;
+    [Parameter] public string ErrorMessage { get; set; } = string.Empty;
+    [Parameter] public bool HasVideos { get; set; }
+
+    [Parameter] public EventCallback<string> OnUrlChanged { get; set; }
+    [Parameter] public EventCallback<string> OnTitleChanged { get; set; }
+    [Parameter] public EventCallback OnAdd { get; set; }
+    [Parameter] public EventCallback OnCopy { get; set; }
+    [Parameter] public EventCallback OnClear { get; set; }
+
+    private async Task HandleKeyDown(KeyboardEventArgs e)
+    {
+        if (e.Key == "Enter" && !string.IsNullOrWhiteSpace(UrlValue))
+            await OnAdd.InvokeAsync();
+    }
+}

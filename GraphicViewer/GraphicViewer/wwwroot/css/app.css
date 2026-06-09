@@ -545,81 +545,106 @@ html, body {
     border-radius: var(--radius-lg);
 }
 
-    /* Style the native controls bar */
-    .video-player::-webkit-media-controls-panel {
-        background: linear-gradient(transparent, rgba(0,0,0,0.8));
-    }
+    
+/* Style the native controls bar */
+.video-player::-webkit-media-controls-panel {
+    background: linear-gradient(transparent, rgba(0,0,0,0.8));
+}
 
 
-/* ============================================================
-   GraphicViewer — Phase 3: Video Player Styles
-   APPEND this entire block to the bottom of wwwroot/css/app.css
-   ============================================================ */
+/* ═══════════════════════════════════════════════════════════════════
+   MP3 PLAYER — append these styles to wwwroot/css/app.css
+   ═══════════════════════════════════════════════════════════════════ */
 
-/* ── Video Sidebar Thumbnails ─────────────────────────────── */
+/* ── Audio Sidebar Track List ──────────────────────────────────────── */
+.audio-sidebar {
+    width: 260px;
+}
 
-/*.video-thumb {
+.audio-track-item {
     display: flex;
     align-items: center;
     gap: 10px;
-    padding: 8px 12px;
+    padding: 8px 10px;
+    border-radius: var(--radius-md);
     cursor: pointer;
-    border-radius: 6px;
-    transition: background 0.15s ease;
-    border-left: 3px solid transparent;
-    margin: 2px 6px;
+    transition: background 0.15s;
+    border: 1.5px solid transparent;
 }
 
-    .video-thumb:hover {
+    .audio-track-item:hover {
         background: var(--bg-elevated);
     }
 
-    .video-thumb.selected {
-        background: rgba(79, 142, 247, 0.15);
-        border-left-color: var(--accent);
+    .audio-track-item.active {
+        background: var(--bg-elevated);
+        border-color: var(--accent-border);
     }
 
-.video-thumb-preview {
-    position: relative;
-    width: 56px;
-    height: 40px;
-    background: #0d0d14;
-    border-radius: 4px;
+.track-number {
+    width: 24px;
+    height: 24px;
+    flex-shrink: 0;
     display: flex;
     align-items: center;
     justify-content: center;
-    flex-shrink: 0;
+}
+
+.track-num-label {
+    font-size: 11px;
+    color: var(--text-muted);
+    font-family: var(--font-mono);
+}
+
+/* Animated equalizer bars */
+.track-bars {
+    display: flex;
+    align-items: flex-end;
+    gap: 2px;
+    height: 16px;
+}
+
+.track-bars span {
+    width: 3px;
+    background: var(--accent);
+    border-radius: 2px;
+    animation: eqBar 0.8s ease-in-out infinite alternate;
+}
+        
+.track-bars span:nth-child(1) {
+    animation-delay: 0s;
+    animation-duration: 0.6s;
+}
+        
+.track-bars span:nth-child(2) {
+    animation-delay: 0.2s;
+    animation-duration: 0.9s;
+}
+        
+.track-bars span:nth-child(3) {
+    animation-delay: 0.1s;
+    animation-duration: 0.7s;
+}
+
+@keyframes eqBar {
+    from {
+        height: 4px;
+    }
+
+    to {
+        height: 16px;
+    }
+}
+
+.track-info {
+    flex: 1;
     overflow: hidden;
-    border: 1px solid rgba(255,255,255,0.06);
-}
-
-.video-play-icon {
-    font-size: 18px;
-    color: rgba(255,255,255,0.4);
-}
-
-.video-thumb.selected .video-play-icon {
-    color: var(--accent);
-}
-
-.video-ext-badge {
-    position: absolute;
-    bottom: 2px;
-    right: 3px;
-    font-size: 8px;
-    font-weight: 700;
-    color: rgba(255,255,255,0.5);
-    letter-spacing: 0.5px;
-}
-
-.video-thumb-info {
     display: flex;
     flex-direction: column;
     gap: 2px;
-    overflow: hidden;
 }
 
-.video-thumb-name {
+.track-title {
     font-size: 12px;
     color: var(--text-primary);
     white-space: nowrap;
@@ -627,327 +652,839 @@ html, body {
     text-overflow: ellipsis;
 }
 
-.video-thumb.selected .video-thumb-name {
+.audio-track-item.active .track-title {
     color: var(--accent);
 }
 
-.video-thumb-size {
+.track-meta {
     font-size: 10px;
-    color: rgba(255,255,255,0.35);
-}*/
+    color: var(--text-muted);
+    font-family: var(--font-mono);
+}
 
-/* ── Video Stage ──────────────────────────────────────────── */
+.track-active-icon {
+    font-size: 14px;
+    color: var(--accent);
+    flex-shrink: 0;
+}
 
-/*.video-stage {
+/* ── Audio Stage ───────────────────────────────────────────────────── */
+.audio-stage {
     flex: 1;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    background: #000;
-    overflow: hidden;
-    position: relative;
-}
-
-.video-canvas-wrapper {
-    width: 100%;
-    height: 100%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-}
-
-.video-element {
-    max-width: 100%;
-    max-height: 100%;
-    object-fit: contain;
-    cursor: pointer;
-    display: block;
-}
-
-.video-canvas-empty {
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: center;
+    gap: 24px;
+    padding: 32px;
+    background: var(--bg-app);
+    background-image: radial-gradient(circle at 1px 1px, rgba(255,255,255,0.03) 1px, transparent 0);
+    background-size: 24px 24px;
+}
+
+/* ── Album Art ─────────────────────────────────────────────────────── */
+.audio-art-wrap {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
     gap: 16px;
-    color: rgba(255,255,255,0.2);
-    user-select: none;
 }
 
-    .video-canvas-empty .empty-icon {
-        font-size: 64px;
-        opacity: 0.3;
-    }
-
-    .video-canvas-empty p {
-        font-size: 14px;
-        margin: 0;
-    }*/
-
-/* ── Video Toolbar ────────────────────────────────────────── */
-
-/*.video-toolbar {
+.audio-art {
+    width: 180px;
+    height: 180px;
+    border-radius: 50%;
+    background: linear-gradient(135deg, #1a1a2e 0%, #16213e 50%, #0f3460 100%);
+    border: 3px solid var(--border);
     display: flex;
     align-items: center;
-    justify-content: space-between;
+    justify-content: center;
+    transition: border-color 0.3s;
+    box-shadow: 0 8px 32px rgba(0,0,0,0.5);
+}
+
+    .audio-art.spinning {
+        animation: discSpin 8s linear infinite;
+        border-color: var(--accent-border);
+        box-shadow: 0 0 30px rgba(79,142,247,0.2), 0 8px 32px rgba(0,0,0,0.5);
+    }
+
+@keyframes discSpin {
+    from {
+        transform: rotate(0deg);
+    }
+
+    to {
+        transform: rotate(360deg);
+    }
+}
+
+.audio-art-inner {
+    width: 60px;
+    height: 60px;
     background: var(--bg-elevated);
-    border-bottom: 1px solid rgba(255,255,255,0.06);
-    padding: 6px 12px;
-    gap: 8px;
-    flex-shrink: 0;
-    height: 48px;
-}
-
-.toolbar-center {
+    border-radius: 50%;
     display: flex;
     align-items: center;
-    gap: 8px;
+    justify-content: center;
+    font-size: 28px;
+    color: var(--accent);
 }
 
-.toolbar-right {
+/* ── Visualizer Bars ───────────────────────────────────────────────── */
+.audio-viz-bars {
     display: flex;
-    align-items: center;
-    gap: 8px;
+    align-items: flex-end;
+    gap: 3px;
+    height: 40px;
 }
 
-.play-btn {
-    width: 38px !important;
-    height: 38px !important;
-    font-size: 20px !important;
-    background: var(--accent) !important;
-    color: #fff !important;
-    border-radius: 50% !important;
-}
-
-    .play-btn:hover {
-        background: #3a7ae0 !important;
-    }
-
-    .play-btn:disabled {
-        background: rgba(79,142,247,0.3) !important;
-        cursor: not-allowed;
-    }*/
-
-/* ── Volume Slider ─────────────────────────────────────────── */
-
-/*.volume-slider {
-    -webkit-appearance: none;
-    appearance: none;
-    width: 80px;
-    height: 4px;
+.viz-bar {
+    width: 4px;
+    background: linear-gradient(to top, var(--accent), #28c840);
     border-radius: 2px;
-    background: rgba(255,255,255,0.15);
-    outline: none;
-    cursor: pointer;
+    animation: vizPulse 0.6s ease-in-out infinite alternate;
+    min-height: 4px;
 }
 
-    .volume-slider::-webkit-slider-thumb {
-        -webkit-appearance: none;
-        width: 14px;
-        height: 14px;
-        border-radius: 50%;
-        background: var(--accent);
-        cursor: pointer;
-        transition: transform 0.1s;
+@keyframes vizPulse {
+    from {
+        height: 4px;
+        opacity: 0.5;
     }
 
-        .volume-slider::-webkit-slider-thumb:hover {
-            transform: scale(1.2);
-        }
+    to {
+        height: 36px;
+        opacity: 1;
+    }
+}
 
-    .volume-slider:disabled {
-        opacity: 0.3;
-        cursor: not-allowed;
-    }*/
+/* ── Track Display ─────────────────────────────────────────────────── */
+.audio-track-display {
+    text-align: center;
+    max-width: 400px;
+}
 
-/* ── Progress Bar ──────────────────────────────────────────── */
+.audio-track-title {
+    font-size: 18px;
+    font-weight: 500;
+    color: var(--text-primary);
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    max-width: 400px;
+}
 
-/*.video-progress-bar-wrapper {
+.audio-track-ext {
+    font-size: 12px;
+    color: var(--text-muted);
+    font-family: var(--font-mono);
+    margin-top: 4px;
+}
+
+/* ── Progress Bar ──────────────────────────────────────────────────── */
+.audio-progress-wrap {
     display: flex;
     align-items: center;
-    gap: 10px;
-    background: var(--bg-elevated);
-    border-top: 1px solid rgba(255,255,255,0.06);
-    padding: 8px 14px;
-    flex-shrink: 0;
+    gap: 12px;
+    width: 100%;
+    max-width: 440px;
 }
 
-.time-display {
+.audio-time {
     font-size: 11px;
-    color: rgba(255,255,255,0.5);
-    font-variant-numeric: tabular-nums;
-    white-space: nowrap;
-    min-width: 40px;
+    font-family: var(--font-mono);
+    color: var(--text-muted);
+    min-width: 36px;
+    text-align: center;
 }
 
-.progress-track {
+.audio-progress-bar {
     flex: 1;
     height: 4px;
-    background: rgba(255,255,255,0.12);
+    background: var(--bg-hover);
     border-radius: 2px;
-    position: relative;
     cursor: pointer;
-    transition: height 0.15s ease;
+    position: relative;
+    transition: height 0.15s;
 }
 
-    .progress-track:hover {
+    .audio-progress-bar:hover {
         height: 6px;
     }
 
-.progress-fill {
+.audio-progress-fill {
     height: 100%;
-    background: var(--accent);
+    background: linear-gradient(90deg, var(--accent), #28c840);
     border-radius: 2px;
-    pointer-events: none;
     transition: width 0.1s linear;
 }
 
-.progress-thumb {
+.audio-progress-thumb {
     position: absolute;
     top: 50%;
     transform: translate(-50%, -50%);
     width: 12px;
     height: 12px;
+    background: var(--text-primary);
     border-radius: 50%;
-    background: #fff;
-    pointer-events: none;
     opacity: 0;
     transition: opacity 0.15s;
 }
 
-.progress-track:hover .progress-thumb {
+.audio-progress-bar:hover .audio-progress-thumb {
     opacity: 1;
-}*/
-
-/* ── Video Status Bar ──────────────────────────────────────── */
-
-/*.video-status-bar {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    background: var(--bg-surface);
-    border-top: 1px solid rgba(255,255,255,0.05);
-    padding: 5px 14px;
-    flex-shrink: 0;
-    height: 32px;
 }
 
-.status-left {
+/* ── Controls ──────────────────────────────────────────────────────── */
+.audio-controls {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+
+.audio-ctrl-btn {
+    background: transparent;
+    border: none;
+    color: var(--text-secondary);
+    cursor: pointer;
+    font-size: 18px;
+    padding: 8px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: color 0.15s, background 0.15s;
+}
+
+.audio-ctrl-btn:hover:not(:disabled) {
+    color: var(--text-primary);
+    background: var(--bg-hover);
+}
+
+.audio-ctrl-btn:disabled {
+    opacity: 0.25;
+    cursor: default;
+}
+
+.audio-ctrl-btn.active {
+    color: var(--accent);
+}
+
+.audio-ctrl-nav {
+    font-size: 22px;
+}
+
+.audio-ctrl-play {
+    width: 56px;
+    height: 56px;
+    font-size: 24px;
+    background: var(--accent-bg);
+    border: 1px solid var(--accent-border);
+    color: var(--accent);
+}
+
+.audio-ctrl-play:hover {
+    background: rgba(79,142,247,0.25) !important;
+    color: var(--accent) !important;
+}
+
+/* ── Volume Control ────────────────────────────────────────────────── */
+.audio-volume-wrap {
     display: flex;
     align-items: center;
     gap: 8px;
-    overflow: hidden;
-    font-size: 11px;
-    color: rgba(255,255,255,0.45);
 }
 
-.status-filename {
+.audio-volume-slider {
+    -webkit-appearance: none;
+    width: 100px;
+    height: 4px;
+    border-radius: 2px;
+    background: var(--bg-hover);
+    outline: none;
+    cursor: pointer;
+}
+
+.audio-volume-slider::-webkit-slider-thumb {
+    -webkit-appearance: none;
+    width: 12px;
+    height: 12px;
+    border-radius: 50%;
+    background: var(--text-primary);
+    cursor: pointer;
+}
+
+.audio-volume-slider:hover {
+    background: var(--border-hover);
+}
+
+/* --------------------------------------------------------------------------------------*/
+/* --------------------------------------------------------------------------------------*/
+/* ═══════════════════════════════════════════════════════════════════
+   YOUTUBE PLAYER — append these styles to wwwroot/css/app.css
+   ═══════════════════════════════════════════════════════════════════ */
+
+/* ── URL Add Bar ───────────────────────────────────────────────────── */
+.yt-add-bar {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    padding: 10px 16px;
+    background: var(--bg-elevated);
+    border-bottom: 1px solid var(--border);
+    flex-shrink: 0;
+    flex-wrap: wrap;
+}
+
+.yt-input-group {
+    position: relative;
+    display: flex;
+    align-items: center;
+}
+
+.yt-input-icon {
+    position: absolute;
+    left: 8px;
+    font-size: 14px;
+    color: var(--text-muted);
+    pointer-events: none;
+    z-index: 1;
+}
+
+.yt-url-input {
+    width: 320px;
+    padding: 6px 10px 6px 30px;
+    background: var(--bg-surface);
+    border: 1px solid var(--border);
+    border-radius: var(--radius-sm);
     color: var(--text-primary);
+    font-size: 12px;
+    font-family: var(--font-mono);
+    outline: none;
+    transition: border-color 0.15s;
+}
+
+    .yt-url-input:focus {
+        border-color: #ff0000;
+    }
+
+    .yt-url-input::placeholder {
+        color: var(--text-muted);
+    }
+
+.yt-title-input {
+    width: 200px;
+    padding: 6px 10px 6px 30px;
+    background: var(--bg-surface);
+    border: 1px solid var(--border);
+    border-radius: var(--radius-sm);
+    color: var(--text-primary);
+    font-size: 12px;
+    font-family: var(--font-mono);
+    outline: none;
+    transition: border-color 0.15s;
+}
+
+    .yt-title-input:focus {
+        border-color: var(--accent-border);
+    }
+
+    .yt-title-input::placeholder {
+        color: var(--text-muted);
+    }
+
+.yt-add-btn {
+    background: rgba(255,0,0,0.12) !important;
+    border-color: rgba(255,0,0,0.4) !important;
+    color: #ff4444 !important;
+}
+
+    .yt-add-btn:hover:not(:disabled) {
+        background: rgba(255,0,0,0.2) !important;
+    }
+
+.yt-copy-btn:hover {
+    color: var(--accent) !important;
+}
+
+.yt-clear-btn:hover {
+    color: #ff5f57 !important;
+}
+
+.yt-error {
     font-size: 11px;
+    color: #ff5f57;
+    font-family: var(--font-mono);
+}
+
+/* ── YouTube Sidebar ───────────────────────────────────────────────── */
+.yt-sidebar {
+    width: 260px;
+}
+
+/* ── Playlist Item ─────────────────────────────────────────────────── */
+.yt-playlist-item {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    padding: 8px;
+    border-radius: var(--radius-md);
+    cursor: pointer;
+    border: 1.5px solid transparent;
+    transition: background 0.15s, border-color 0.15s;
+}
+
+    .yt-playlist-item:hover {
+        background: var(--bg-elevated);
+    }
+
+    .yt-playlist-item.active {
+        background: var(--bg-elevated);
+        border-color: rgba(255,0,0,0.4);
+    }
+
+.yt-thumb-wrap {
+    position: relative;
+    width: 80px;
+    height: 45px;
+    flex-shrink: 0;
+    border-radius: var(--radius-sm);
+    overflow: hidden;
+    background: var(--bg-app);
+}
+
+.yt-thumb {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+}
+
+.yt-thumb-fallback {
+    width: 100%;
+    height: 100%;
+    align-items: center;
+    justify-content: center;
+    font-size: 20px;
+    color: #ff0000;
+    opacity: 0.5;
+    background: var(--bg-app);
+}
+
+.yt-thumb-playing {
+    position: absolute;
+    inset: 0;
+    background: rgba(255,0,0,0.3);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 16px;
+    color: white;
+}
+
+.yt-item-info {
+    flex: 1;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    gap: 3px;
+}
+
+.yt-item-title {
+    font-size: 11px;
+    color: var(--text-primary);
     white-space: nowrap;
     overflow: hidden;
     text-overflow: ellipsis;
-    max-width: 320px;
 }
 
-.status-badge {
-    background: rgba(79,142,247,0.2);
-    color: var(--accent);
-    padding: 1px 6px;
-    border-radius: 4px;
+.yt-playlist-item.active .yt-item-title {
+    color: #ff4444;
+}
+
+.yt-item-date {
     font-size: 10px;
-    font-weight: 600;
-    letter-spacing: 0.5px;
-    flex-shrink: 0;
+    color: var(--text-muted);
+    font-family: var(--font-mono);
 }
 
-.status-size {
-    white-space: nowrap;
-    flex-shrink: 0;
-}
-
-.status-hint {
-    font-size: 11px;
-    color: rgba(255,255,255,0.25);
-    font-style: italic;
-}
-
-.status-right {
-    flex-shrink: 0;
-    margin-left: 12px;
-}
-
-.status-position {
-    font-size: 11px;
-    color: rgba(255,255,255,0.4);
-    white-space: nowrap;
-}
-
-.status-divider {
-    color: rgba(255,255,255,0.15);
-}*/
-
-
-/* ============================================================
-   Phase 3 — Layout Fix Patch
-   APPEND to the very bottom of wwwroot/css/app.css
-   ============================================================ */
-
-/* ── Fix: viewer-main must be a bounded flex column ───────── */
-/* Without this the video stage has no height ceiling and overflows */
-
-/*.viewer-main {
-    display: flex;
-    flex-direction: column;
-    flex: 1;
-    min-height: 0;*/ /* critical — lets flex children shrink below content size */
-    /*overflow: hidden;
-}*/
-
-/* ── Fix: video-stage fills remaining space, never overflows ─ */
-
-/*.video-stage {
-    flex: 1;
-    min-height: 0;*/ /* same — allows it to shrink inside the flex column */
-    /*overflow: hidden;
-}
-
-.video-canvas-wrapper {
-    width: 100%;
-    height: 100%;
-    overflow: hidden;
-}*/
-
-/* ── Fix: video element strictly contained ───────────────────*/
-
-/*.video-element {
-    max-width: 100%;
-    max-height: 100%;
-    width: auto;
-    height: auto;
-    object-fit: contain;
-    display: block;
-}*/
-
-/* ── Fix: toolbar-group needs flex so buttons are visible ──── */
-
-/*.toolbar-group {
+.yt-remove-btn {
+    background: transparent;
+    border: none;
+    color: var(--text-muted);
+    cursor: pointer;
+    padding: 4px;
+    border-radius: 4px;
+    font-size: 12px;
+    opacity: 0;
+    transition: opacity 0.15s, color 0.15s;
     display: flex;
     align-items: center;
-    gap: 6px;
-}*/
+}
 
-/* ── Fix: toolbar btn label hidden on small toolbar ─────────── */
+.yt-playlist-item:hover .yt-remove-btn {
+    opacity: 1;
+}
 
-/*.btn-label {
-    font-size: 12px;
+.yt-remove-btn:hover {
+    color: #ff5f57;
+}
+
+/* ── YouTube Stage ─────────────────────────────────────────────────── */
+.yt-stage {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 16px;
+    padding: 24px;
+    background: #000;
+    overflow: hidden;
+}
+
+/* ── IFrame ────────────────────────────────────────────────────────── */
+.yt-frame-wrap {
+    width: 100%;
+    max-width: 860px;
+    aspect-ratio: 16 / 9;
+    border-radius: var(--radius-lg);
+    overflow: hidden;
+    background: #000;
+    box-shadow: 0 8px 40px rgba(0,0,0,0.7);
+}
+
+.yt-iframe {
+    width: 100%;
+    height: 100%;
+    border: none;
+    display: block;
+}
+
+/* ── Video Info ────────────────────────────────────────────────────── */
+.yt-video-info {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 100%;
+    max-width: 860px;
+    gap: 12px;
+}
+
+.yt-video-title {
+    font-size: 15px;
+    font-weight: 500;
+    color: var(--text-primary);
+    flex: 1;
+    overflow: hidden;
     white-space: nowrap;
-}*/
+    text-overflow: ellipsis;
+}
+
+.yt-video-link {
+    display: flex;
+    align-items: center;
+    gap: 5px;
+    font-size: 12px;
+    color: #ff4444;
+    text-decoration: none;
+    font-family: var(--font-mono);
+    opacity: 0.8;
+    transition: opacity 0.15s;
+    flex-shrink: 0;
+}
+
+    .yt-video-link:hover {
+        opacity: 1;
+    }
+
+/* ── Nav Row ───────────────────────────────────────────────────────── */
+.yt-nav-row {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
 
 /* --------------------------------------------------------------------------------------*/
 
+/* ═══════════════════════════════════════════════════════════════════
+   HOME DASHBOARD — append these styles to wwwroot/css/app.css
+   ═══════════════════════════════════════════════════════════════════ */
 
+/* ── Home Shell ────────────────────────────────────────────────────── */
+.home-shell {
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    overflow-y: auto;
+    padding: 32px 40px;
+    gap: 36px;
+    background: var(--bg-app);
+    background-image: radial-gradient(ellipse at 20% 20%, rgba(79,142,247,0.06) 0%, transparent 60%), radial-gradient(ellipse at 80% 80%, rgba(40,200,64,0.04) 0%, transparent 60%);
+}
 
+/* ── Hero ──────────────────────────────────────────────────────────── */
+.home-hero {
+    display: flex;
+    flex-direction: column;
+    gap: 24px;
+}
+
+.home-hero-brand {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+}
+
+.home-logo {
+    flex-shrink: 0;
+}
+
+.home-logo-svg {
+    width: 64px;
+    height: 64px;
+    filter: drop-shadow(0 4px 16px rgba(12,192,223,0.3));
+}
+
+.home-hero-text {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+}
+
+.home-title {
+    font-size: 36px;
+    font-weight: 700;
+    letter-spacing: -0.02em;
+    line-height: 1;
+}
+
+.home-title-graphic {
+    color: var(--text-primary);
+}
+
+.home-title-viewer {
+    color: var(--accent);
+}
+
+.home-subtitle {
+    font-size: 14px;
+    color: var(--text-muted);
+    font-family: var(--font-mono);
+    letter-spacing: 0.02em;
+}
+
+/* ── Stats Bar ─────────────────────────────────────────────────────── */
+.stats-bar {
+    display: flex;
+    align-items: center;
+    gap: 0;
+    background: var(--bg-surface);
+    border: 1px solid var(--border);
+    border-radius: var(--radius-lg);
+    padding: 16px 24px;
+    max-width: 700px;
+}
+
+.stat-item {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    flex: 1;
+    justify-content: center;
+}
+
+    .stat-item i {
+        font-size: 18px;
+    }
+
+.stat-value {
+    font-size: 22px;
+    font-weight: 700;
+    color: var(--text-primary);
+    font-family: var(--font-mono);
+    min-width: 24px;
+    text-align: center;
+}
+
+.stat-label {
+    font-size: 11px;
+    color: var(--text-muted);
+    font-family: var(--font-mono);
+    white-space: nowrap;
+}
+
+.stat-divider {
+    width: 1px;
+    height: 32px;
+    background: var(--border);
+    flex-shrink: 0;
+}
+
+/* ── Section ───────────────────────────────────────────────────────── */
+.home-section {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+}
+
+.home-section-label {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-size: 11px;
+    font-family: var(--font-mono);
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--text-muted);
+}
+
+/* ── Viewer Cards Grid ─────────────────────────────────────────────── */
+.viewer-cards-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(340px, 1fr));
+    gap: 12px;
+}
+
+/* ── Viewer Card ───────────────────────────────────────────────────── */
+.viewer-card {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    padding: 16px 20px;
+    background: var(--bg-surface);
+    border: 1px solid var(--border);
+    border-radius: var(--radius-lg);
+    text-decoration: none;
+    cursor: pointer;
+    transition: background 0.2s, border-color 0.2s, transform 0.2s;
+    position: relative;
+    overflow: hidden;
+}
+
+.viewer-card::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(135deg, rgba(255,255,255,0.02) 0%, transparent 60%);
+    pointer-events: none;
+}
+
+.viewer-card:hover {
+    background: var(--bg-elevated);
+    transform: translateY(-2px);
+    box-shadow: 0 8px 24px rgba(0,0,0,0.3);
+}
+
+.viewer-card-icon {
+    width: 52px;
+    height: 52px;
+    border-radius: var(--radius-md);
+    border: 1px solid;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 24px;
+    flex-shrink: 0;
+    transition: transform 0.2s;
+}
+
+.viewer-card:hover .viewer-card-icon {
+    transform: scale(1.08);
+}
+
+.viewer-card-body {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    gap: 3px;
+    overflow: hidden;
+}
+
+.viewer-card-title {
+    font-size: 14px;
+    font-weight: 500;
+    color: var(--text-primary);
+}
+
+.viewer-card-desc {
+    font-size: 12px;
+    color: var(--text-muted);
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.viewer-card-formats {
+    display: flex;
+    gap: 4px;
+    flex-wrap: wrap;
+    justify-content: flex-end;
+    max-width: 140px;
+}
+
+.format-badge {
+    font-size: 9px;
+    font-family: var(--font-mono);
+    padding: 2px 6px;
+    border-radius: 4px;
+    background: var(--bg-elevated);
+    color: var(--text-muted);
+    border: 1px solid var(--border);
+    letter-spacing: 0.04em;
+    white-space: nowrap;
+}
+
+.viewer-card-arrow {
+    font-size: 16px;
+    color: var(--text-muted);
+    flex-shrink: 0;
+    transition: transform 0.2s, color 0.2s;
+}
+
+.viewer-card:hover .viewer-card-arrow {
+    transform: translateX(4px);
+    color: var(--text-primary);
+}
+
+/* ── Footer ────────────────────────────────────────────────────────── */
+.home-footer {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding-top: 16px;
+    border-top: 1px solid var(--border);
+    margin-top: auto;
+}
+
+.home-footer-brand {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-size: 12px;
+    color: var(--text-muted);
+    font-family: var(--font-mono);
+}
+
+.home-footer-link {
+    color: #0cc0df;
+    text-decoration: none;
+}
+
+    .home-footer-link:hover {
+        text-decoration: underline;
+    }
+
+.home-footer-version {
+    font-size: 11px;
+    color: var(--text-muted);
+    font-family: var(--font-mono);
+    opacity: 0.6;
+}
+
+/* --------------------------------------------------------------------------------------*/
 
 /* ------------------------ Animated LD sticker!! LogicDynamics -------------------------- 
 

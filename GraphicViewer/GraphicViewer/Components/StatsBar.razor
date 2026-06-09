@@ -1,0 +1,41 @@
+@using GraphicViewer.Services
+
+@inject SvgViewerService SvgService
+@inject ImageViewerService ImageService
+@inject VideoPlayerService VideoService
+@inject AudioPlayerService AudioService
+@inject YouTubePlayerService YouTubeService
+
+<div class="stats-bar">
+    <div class="stat-item">
+        <i class="ti ti-vector-triangle" style="color:#4f8ef7" aria-hidden="true"></i>
+        <span class="stat-value">@SvgService.Files.Count</span>
+        <span class="stat-label">SVGs loaded</span>
+    </div>
+    <div class="stat-divider"></div>
+    <div class="stat-item">
+        <i class="ti ti-photo" style="color:#28c840" aria-hidden="true"></i>
+        <span class="stat-value">@ImageService.Files.Count</span>
+        <span class="stat-label">images loaded</span>
+    </div>
+    <div class="stat-divider"></div>
+    <div class="stat-item">
+        <i class="ti ti-player-play" style="color:#febc2e" aria-hidden="true"></i>
+        <span class="stat-value">@VideoService.Files.Count</span>
+        <span class="stat-label">videos loaded</span>
+    </div>
+    <div class="stat-divider"></div>
+    <div class="stat-item">
+        <i class="ti ti-music" style="color:#ff5f57" aria-hidden="true"></i>
+        <span class="stat-value">@AudioService.Files.Count</span>
+        <span class="stat-label">tracks loaded</span>
+    </div>
+    <div class="stat-divider"></div>
+    <div class="stat-item">
+        <i class="ti ti-brand-youtube" style="color:#ff0000" aria-hidden="true"></i>
+        <span class="stat-value">@YouTubeService.Playlist.Count</span>
+        <span class="stat-label">videos saved</span>
+    </div>
+</div>
+
+@code { }

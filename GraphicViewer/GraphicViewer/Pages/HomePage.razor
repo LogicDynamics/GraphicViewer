@@ -1,9 +1,107 @@
 @page "/"
+@using GraphicViewer.Components
+
 <PageTitle>GraphicViewer — Logic Dynamics</PageTitle>
 
-<div class="placeholder-page">
-    <div class="placeholder-icon"><i class="ti ti-stack-2" aria-hidden="true"></i></div>
-    <h1>GraphicViewer</h1>
-    <p>One app for all your media files.</p>
-    <p class="placeholder-hint">Choose a viewer from the sidebar to get started.</p>
+<div class="home-shell">
+
+    <!-- Hero -->
+    <div class="home-hero">
+        <div class="home-hero-brand">
+            <div class="home-logo">
+                <svg viewBox="0 0 347 346" fill="none" xmlns="http://www.w3.org/2000/svg" class="home-logo-svg">
+                    <circle cx="173.75" cy="173" r="172.8" fill="#1800AD" />
+                    <path d="M 96.8 38.9 L 96.8 229.9 C 96.8 257.7 119.4 280.4 147.2 280.4 L 197.8 280.4"
+                          stroke="#0CC0DF" stroke-width="30.7" stroke-linecap="butt" fill="none" />
+                    <path d="M 112.0 54.3 L 190.0 54.3 C 233.0 54.3 267.8 89.1 267.8 132.2 L 267.8 242.1 C 267.8 279.2 237.7 309.3 200.6 309.3 L 133.4 309.3"
+                          stroke="#ED1440" stroke-width="30.7" stroke-linecap="butt" fill="none" />
+                </svg>
+            </div>
+            <div class="home-hero-text">
+                <h1 class="home-title">
+                    <span class="home-title-graphic">Graphic</span><span class="home-title-viewer">Viewer</span>
+                </h1>
+                <p class="home-subtitle">One app for all your media — by Logic Dynamics</p>
+            </div>
+        </div>
+
+        <!-- Live Stats -->
+        <StatsBar />
+    </div>
+
+    <!-- Viewer Cards Grid -->
+    <div class="home-section">
+        <div class="home-section-label">
+            <i class="ti ti-layout-grid" aria-hidden="true"></i>
+            viewers
+        </div>
+
+        <div class="viewer-cards-grid">
+
+            <ViewerCard Route="/svg-viewer"
+                        Title="SVG Viewer"
+                        Description="Browse and display SVG files from any folder"
+                        Icon="ti-vector-triangle"
+                        IconColor="#4f8ef7"
+                        IconBg="rgba(79,142,247,0.12)"
+                        BorderColor="rgba(79,142,247,0.3)"
+                        Formats='["SVG"]' />
+
+            <ViewerCard Route="/image-viewer"
+                        Title="PNG / JPEG Viewer"
+                        Description="View and download images from any folder"
+                        Icon="ti-photo"
+                        IconColor="#28c840"
+                        IconBg="rgba(40,200,64,0.12)"
+                        BorderColor="rgba(40,200,64,0.3)"
+                        Formats='["PNG","JPEG","WEBP","GIF","BMP"]' />
+
+            <ViewerCard Route="/video-player"
+                        Title="MP4 Player"
+                        Description="Play video files with native browser controls"
+                        Icon="ti-player-play"
+                        IconColor="#febc2e"
+                        IconBg="rgba(254,188,46,0.12)"
+                        BorderColor="rgba(254,188,46,0.3)"
+                        Formats='["MP4","WEBM","MOV","AVI"]' />
+
+            <ViewerCard Route="/audio-player"
+                        Title="MP3 Player"
+                        Description="Play tracks with shuffle, repeat and visualizer"
+                        Icon="ti-music"
+                        IconColor="#ff5f57"
+                        IconBg="rgba(255,95,87,0.12)"
+                        BorderColor="rgba(255,95,87,0.3)"
+                        Formats='["MP3","WAV","OGG","FLAC","AAC"]' />
+
+            <ViewerCard Route="/youtube-player"
+                        Title="YouTube Player"
+                        Description="Embed YouTube videos and save your playlist"
+                        Icon="ti-brand-youtube"
+                        IconColor="#ff0000"
+                        IconBg="rgba(255,0,0,0.10)"
+                        BorderColor="rgba(255,0,0,0.3)"
+                        Formats='["YouTube URL","Shorts","youtu.be"]' />
+
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <div class="home-footer">
+        <div class="home-footer-brand">
+            <svg viewBox="0 0 347 346" fill="none" xmlns="http://www.w3.org/2000/svg"
+                 style="width:20px;height:20px;flex-shrink:0">
+                <circle cx="173.75" cy="173" r="172.8" fill="#1800AD" />
+                <path d="M 96.8 38.9 L 96.8 229.9 C 96.8 257.7 119.4 280.4 147.2 280.4 L 197.8 280.4"
+                      stroke="#0CC0DF" stroke-width="30.7" stroke-linecap="butt" fill="none" />
+                <path d="M 112.0 54.3 L 190.0 54.3 C 233.0 54.3 267.8 89.1 267.8 132.2 L 267.8 242.1 C 267.8 279.2 237.7 309.3 200.6 309.3 L 133.4 309.3"
+                      stroke="#ED1440" stroke-width="30.7" stroke-linecap="butt" fill="none" />
+            </svg>
+            <span>Logic Dynamics — <a href="https://logicdynamics.net" target="_blank" class="home-footer-link">logicdynamics.net</a></span>
+        </div>
+        <span class="home-footer-version">GraphicViewer v1.0 — Blazor WASM + .NET 10</span>
+    </div>
+
 </div>
+
+@code { }

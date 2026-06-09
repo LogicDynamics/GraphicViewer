@@ -14,13 +14,14 @@ build_property.ProjectTypeGuids =
 build_property.InvariantGlobalization = false
 build_property.PlatformNeutralAssembly = 
 build_property.EnforceExtendedAnalyzerRules = 
+build_property.EntryPointFilePath = 
 build_property._SupportedPlatformList = browser
 build_property.RootNamespace = GraphicViewer
 build_property.RootNamespace = GraphicViewer
 build_property.ProjectDir = C:\Dev\GraphicViewer\GraphicViewer\GraphicViewer\
 build_property.EnableComHosting = 
 build_property.EnableGeneratedComInterfaceComImportInterop = false
-build_property.RazorLangVersion = 9.0
+build_property.RazorLangVersion = 10.0
 build_property.SupportLocalizedComponentNames = 
 build_property.GenerateRazorMetadataSourceChecksumAttributes = 
 build_property.MSBuildProjectDirectory = C:\Dev\GraphicViewer\GraphicViewer\GraphicViewer
@@ -30,6 +31,22 @@ build_property.EnableCodeStyleSeverity =
 
 [C:/Dev/GraphicViewer/GraphicViewer/GraphicViewer/App.razor]
 build_metadata.AdditionalFiles.TargetPath = QXBwLnJhem9y
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Dev/GraphicViewer/GraphicViewer/GraphicViewer/Components/AudioPlayer.razor]
+build_metadata.AdditionalFiles.TargetPath = Q29tcG9uZW50c1xBdWRpb1BsYXllci5yYXpvcg==
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Dev/GraphicViewer/GraphicViewer/GraphicViewer/Components/AudioStatusBar.razor]
+build_metadata.AdditionalFiles.TargetPath = Q29tcG9uZW50c1xBdWRpb1N0YXR1c0Jhci5yYXpvcg==
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Dev/GraphicViewer/GraphicViewer/GraphicViewer/Components/AudioToolbar.razor]
+build_metadata.AdditionalFiles.TargetPath = Q29tcG9uZW50c1xBdWRpb1Rvb2xiYXIucmF6b3I=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Dev/GraphicViewer/GraphicViewer/GraphicViewer/Components/AudioTrackItem.razor]
+build_metadata.AdditionalFiles.TargetPath = Q29tcG9uZW50c1xBdWRpb1RyYWNrSXRlbS5yYXpvcg==
 build_metadata.AdditionalFiles.CssScope = 
 
 [C:/Dev/GraphicViewer/GraphicViewer/GraphicViewer/Components/ImageCanvas.razor]
@@ -54,6 +71,10 @@ build_metadata.AdditionalFiles.CssScope =
 
 [C:/Dev/GraphicViewer/GraphicViewer/GraphicViewer/Components/SearchBar.razor]
 build_metadata.AdditionalFiles.TargetPath = Q29tcG9uZW50c1xTZWFyY2hCYXIucmF6b3I=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Dev/GraphicViewer/GraphicViewer/GraphicViewer/Components/StatsBar.razor]
+build_metadata.AdditionalFiles.TargetPath = Q29tcG9uZW50c1xTdGF0c0Jhci5yYXpvcg==
 build_metadata.AdditionalFiles.CssScope = 
 
 [C:/Dev/GraphicViewer/GraphicViewer/GraphicViewer/Components/StatusBar.razor]
@@ -84,8 +105,24 @@ build_metadata.AdditionalFiles.CssScope =
 build_metadata.AdditionalFiles.TargetPath = Q29tcG9uZW50c1xWaWRlb1Rvb2xiYXIucmF6b3I=
 build_metadata.AdditionalFiles.CssScope = 
 
+[C:/Dev/GraphicViewer/GraphicViewer/GraphicViewer/Components/ViewerCard.razor]
+build_metadata.AdditionalFiles.TargetPath = Q29tcG9uZW50c1xWaWV3ZXJDYXJkLnJhem9y
+build_metadata.AdditionalFiles.CssScope = 
+
 [C:/Dev/GraphicViewer/GraphicViewer/GraphicViewer/Components/ViewerToolbar.razor]
 build_metadata.AdditionalFiles.TargetPath = Q29tcG9uZW50c1xWaWV3ZXJUb29sYmFyLnJhem9y
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Dev/GraphicViewer/GraphicViewer/GraphicViewer/Components/YouTubeAddBar.razor]
+build_metadata.AdditionalFiles.TargetPath = Q29tcG9uZW50c1xZb3VUdWJlQWRkQmFyLnJhem9y
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Dev/GraphicViewer/GraphicViewer/GraphicViewer/Components/YouTubeEmbed.razor]
+build_metadata.AdditionalFiles.TargetPath = Q29tcG9uZW50c1xZb3VUdWJlRW1iZWQucmF6b3I=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Dev/GraphicViewer/GraphicViewer/GraphicViewer/Components/YouTubePlaylistItem.razor]
+build_metadata.AdditionalFiles.TargetPath = Q29tcG9uZW50c1xZb3VUdWJlUGxheWxpc3RJdGVtLnJhem9y
 build_metadata.AdditionalFiles.CssScope = 
 
 [C:/Dev/GraphicViewer/GraphicViewer/GraphicViewer/Pages/AudioPlayerPage.razor]

@@ -1,8 +1,159 @@
-@* AudioPlayerPage.razor *@
 @page "/audio-player"
+@using Microsoft.AspNetCore.Components.Forms
+@using GraphicViewer.Models
+@using GraphicViewer.Services
+@using GraphicViewer.Components
+@inject AudioPlayerService PlayerService
+@implements IDisposable
+
 <PageTitle>MP3 Player — GraphicViewer</PageTitle>
-<div class="placeholder-page">
-    <div class="placeholder-icon" style="color:#ff5f57"><i class="ti ti-music" aria-hidden="true"></i></div>
-    <h1>MP3 Player</h1>
-    <p class="placeholder-hint">Coming in Phase 2 — track list, progress bar, and album art display.</p>
+
+<div class="app-shell" @onkeydown="HandleKeyDown" tabindex="0" @ref="_appRef">
+
+    <div class="titlebar">
+        <div class="window-dots">
+            <span class="dot dot-r"></span>
+            <span class="dot dot-y"></span>
+            <span class="dot dot-g"></span>
+        </div>
+        <span class="titlebar-name">MP3 Player</span>
+        <span class="titlebar-meta">
+            @(PlayerService.HasFiles
+                ? $"{PlayerService.Files.Count} tracks"
+                : "no folder loaded")
+        </span>
+    </div>
+
+    <AudioToolbar FileCounter="@PlayerService.FileCounter"
+                  HasFiles="@PlayerService.HasFiles"
+                  OnFilesSelected="HandleFilesSelected"
+                  OnCopy="HandleCopy" />
+
+    <div class="main-layout audio-main-layout">
+
+        <!-- Left: Track List -->
+        <aside class="sidebar audio-sidebar">
+            @if (PlayerService.HasFiles)
+            {
+                <SearchBar Value="@_searchTerm"
+                           ValueChanged="OnSearchChanged"
+                           Placeholder="search tracks..." />
+            }
+            else
+            {
+                <div class="sidebar-header">tracks</div>
+            }
+
+            @if (!PlayerService.HasFiles)
+            {
+                <div class="sidebar-empty">
+                    <i class="ti ti-music"
+                       style="font-size:32px;opacity:0.3;color:var(--text-muted)"
+                       aria-hidden="true"></i>
+                    <p>Open a folder<br />to get started</p>
+                </div>
+            }
+            else if (!FilteredFiles.Any())
+            {
+                <div class="sidebar-empty">
+                    <span style="font-size:20px">🔍</span>
+                    <p>No tracks match<br />"@_searchTerm"</p>
+                </div>
+            }
+            else
+            {
+                @foreach (var file in FilteredFiles)
+                {
+                    <AudioTrackItem File="file"
+                                    IsActive="file.Index == PlayerService.CurrentIndex"
+                                    IsPlaying="@PlayerService.IsPlaying"
+                                    OnClick="@(() => PlayerService.SelectFile(file.Index))" />
+                }
+            }
+        </aside>
+
+        <!-- Right: Player Stage -->
+        <div class="viewer-column">
+            <AudioPlayer CurrentFile="PlayerService.CurrentFile"
+                         IsPlaying="@PlayerService.IsPlaying"
+                         IsShuffle="@PlayerService.IsShuffle"
+                         IsRepeat="@PlayerService.IsRepeat"
+                         CanGoPrev="@PlayerService.CanGoPrev"
+                         CanGoNext="@PlayerService.CanGoNext"
+                         CurrentTime="@PlayerService.CurrentTime"
+                         Duration="@PlayerService.Duration"
+                         ProgressPercent="@PlayerService.ProgressPercent"
+                         OnPrev="@(() => PlayerService.NavigatePrev())"
+                         OnNext="@(() => PlayerService.NavigateNext())"
+                         OnShuffle="@(() => PlayerService.ToggleShuffle())"
+                         OnRepeat="@(() => PlayerService.ToggleRepeat())"
+                         OnPlayStateChanged="HandlePlayStateChanged"
+                         OnTimeUpdate="HandleTimeUpdate"
+                         OnTrackEnded="HandleTrackEnded" />
+
+            <AudioStatusBar CurrentFile="PlayerService.CurrentFile"
+                            FileCounter="@PlayerService.FileCounter"
+                            IsPlaying="@PlayerService.IsPlaying"
+                            IsShuffle="@PlayerService.IsShuffle"
+                            IsRepeat="@PlayerService.IsRepeat" />
+        </div>
+
+    </div>
 </div>
+
+@code {
+    private ElementReference _appRef;
+    private string _searchTerm = string.Empty;
+
+    private IEnumerable<AudioFileModel> FilteredFiles =>
+        string.IsNullOrWhiteSpace(_searchTerm)
+            ? PlayerService.Files
+            : PlayerService.Files.Where(f =>
+                f.Title.Contains(_searchTerm, StringComparison.OrdinalIgnoreCase));
+
+    protected override void OnInitialized()
+    {
+        PlayerService.OnStateChanged += OnPlayerStateChanged;
+    }
+
+    protected override async Task OnAfterRenderAsync(bool firstRender)
+    {
+        if (firstRender) await _appRef.FocusAsync();
+    }
+
+    private async Task HandleFilesSelected(InputFileChangeEventArgs e)
+    {
+        _searchTerm = string.Empty;
+        await PlayerService.LoadFilesAsync(e.GetMultipleFiles(500));
+    }
+
+    private async Task HandleCopy()
+        => await PlayerService.CopyTrackNameAsync();
+
+    private void HandlePlayStateChanged(bool isPlaying)
+        => PlayerService.SetPlaying(isPlaying);
+
+    private void HandleTimeUpdate((double current, double duration) times)
+        => PlayerService.UpdateTime(times.current, times.duration);
+
+    private void HandleTrackEnded()
+        => PlayerService.HandleTrackEnded();
+
+    private void OnSearchChanged(string value) => _searchTerm = value;
+
+    private void HandleKeyDown(KeyboardEventArgs e)
+    {
+        switch (e.Key)
+        {
+            case "ArrowLeft":  PlayerService.NavigatePrev(); break;
+            case "ArrowRight": PlayerService.NavigateNext(); break;
+        }
+    }
+
+    private void OnPlayerStateChanged() => InvokeAsync(StateHasChanged);
+
+    public void Dispose()
+    {
+        PlayerService.OnStateChanged -= OnPlayerStateChanged;
+    }
+}

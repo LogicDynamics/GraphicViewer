@@ -1,8 +1,144 @@
-@* YouTubePlayerPage.razor *@
 @page "/youtube-player"
+@using GraphicViewer.Models
+@using GraphicViewer.Services
+@using GraphicViewer.Components
+@inject YouTubePlayerService PlayerService
+@implements IDisposable
+
 <PageTitle>YouTube Player — GraphicViewer</PageTitle>
-<div class="placeholder-page">
-    <div class="placeholder-icon" style="color:#ff0000"><i class="ti ti-brand-youtube" aria-hidden="true"></i></div>
-    <h1>YouTube Player</h1>
-    <p class="placeholder-hint">Coming in Phase 3 — paste a URL, watch embedded, save links to a playlist file.</p>
+
+<div class="app-shell">
+
+    <div class="titlebar">
+        <div class="window-dots">
+            <span class="dot dot-r"></span>
+            <span class="dot dot-y"></span>
+            <span class="dot dot-g"></span>
+        </div>
+        <span class="titlebar-name">YouTube Player</span>
+        <span class="titlebar-meta">
+            @(PlayerService.HasVideos
+                ? $"{PlayerService.Playlist.Count} videos saved"
+                : "no playlist loaded")
+        </span>
+    </div>
+
+    <!-- URL Input Bar -->
+    <YouTubeAddBar UrlValue="@PlayerService.UrlInput"
+                   TitleValue="@PlayerService.TitleInput"
+                   ErrorMessage="@PlayerService.ErrorMessage"
+                   HasVideos="@PlayerService.HasVideos"
+                   OnUrlChanged="@(v => { PlayerService.UrlInput = v; })"
+                   OnTitleChanged="@(v => { PlayerService.TitleInput = v; })"
+                   OnAdd="HandleAdd"
+                   OnCopy="HandleCopy"
+                   OnClear="HandleClear" />
+
+    <div class="main-layout">
+
+        <!-- Left: Playlist -->
+        <aside class="sidebar yt-sidebar">
+            @if (PlayerService.HasVideos)
+            {
+                <SearchBar Value="@_searchTerm"
+                           ValueChanged="OnSearchChanged"
+                           Placeholder="search playlist..." />
+            }
+            else
+            {
+                <div class="sidebar-header">playlist</div>
+            }
+
+            @if (!PlayerService.HasVideos)
+            {
+                <div class="sidebar-empty">
+                    <i class="ti ti-brand-youtube"
+                       style="font-size:32px;opacity:0.3;color:#ff0000"
+                       aria-hidden="true"></i>
+                    <p>Your saved videos<br />will appear here</p>
+                    <small style="font-size:10px;text-align:center;line-height:1.5">
+                        Playlist saves automatically<br />between sessions
+                    </small>
+                </div>
+            }
+            else if (!FilteredVideos.Any())
+            {
+                <div class="sidebar-empty">
+                    <span style="font-size:20px">🔍</span>
+                    <p>No videos match<br />"@_searchTerm"</p>
+                </div>
+            }
+            else
+            {
+                @foreach (var video in FilteredVideos)
+                {
+                    <YouTubePlaylistItem Video="video"
+                                        IsActive="video.Index == PlayerService.CurrentIndex"
+                                        OnClick="@(() => PlayerService.SelectVideo(video.Index))"
+                                        OnRemove="@(() => HandleRemove(video.Index))" />
+                }
+            }
+        </aside>
+
+        <!-- Right: Embed -->
+        <div class="viewer-column">
+            <YouTubeEmbed CurrentVideo="PlayerService.CurrentVideo"
+                          CanGoPrev="@PlayerService.CanGoPrev"
+                          CanGoNext="@PlayerService.CanGoNext"
+                          VideoCounter="@PlayerService.VideoCounter"
+                          OnPrev="@(() => PlayerService.NavigatePrev())"
+                          OnNext="@(() => PlayerService.NavigateNext())" />
+
+            <div class="statusbar">
+                @if (PlayerService.CurrentVideo is not null)
+                {
+                    <span class="status-pill">@PlayerService.CurrentVideo.Title</span>
+                    <span class="status-pill muted">@PlayerService.CurrentVideo.VideoId</span>
+                    <span class="status-pill muted">@PlayerService.VideoCounter</span>
+                }
+                else
+                {
+                    <span class="status-pill muted">No video selected</span>
+                }
+            </div>
+        </div>
+
+    </div>
 </div>
+
+@code {
+    private string _searchTerm = string.Empty;
+
+    private IEnumerable<YouTubeVideoModel> FilteredVideos =>
+        string.IsNullOrWhiteSpace(_searchTerm)
+            ? PlayerService.Playlist
+            : PlayerService.Playlist.Where(v =>
+                v.Title.Contains(_searchTerm, StringComparison.OrdinalIgnoreCase));
+
+    protected override async Task OnInitializedAsync()
+    {
+        PlayerService.OnStateChanged += OnStateChanged;
+        await PlayerService.InitAsync();
+    }
+
+    private async Task HandleAdd()
+        => await PlayerService.AddVideoAsync();
+
+    private async Task HandleRemove(int index)
+        => await PlayerService.RemoveVideoAsync(index);
+
+    private async Task HandleClear()
+        => await PlayerService.ClearPlaylistAsync();
+
+    private async Task HandleCopy()
+        => await PlayerService.CopyCurrentUrlAsync();
+
+    private void OnSearchChanged(string value) => _searchTerm = value;
+
+    private void OnStateChanged() => InvokeAsync(StateHasChanged);
+
+    public void Dispose()
+    {
+        PlayerService.OnStateChanged -= OnStateChanged;
+    }
+}

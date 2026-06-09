@@ -1,0 +1,222 @@
+@using GraphicViewer.Models
+@inject IJSRuntime JS
+
+<div class="audio-stage">
+    @if (CurrentFile is not null)
+    {
+        <!-- Hidden audio element — we control it via JS -->
+        <audio @key="CurrentFile.ObjectUrl"
+               @ref="_audioRef"
+               src="@CurrentFile.ObjectUrl"
+               preload="metadata"
+               @ontimeupdate="HandleTimeUpdate"
+               @onloadedmetadata="HandleMetadata"
+               @onplay="HandlePlay"
+               @onpause="HandlePause"
+               @onended="HandleEnded">
+        </audio>
+
+        <!-- Album Art / Visualizer -->
+        <div class="audio-art-wrap">
+            <div class="audio-art @(IsPlaying ? "spinning" : "")">
+                <div class="audio-art-inner">
+                    <i class="ti ti-music" aria-hidden="true"></i>
+                </div>
+            </div>
+
+            <!-- Animated bars when playing -->
+            @if (IsPlaying)
+            {
+                <div class="audio-viz-bars">
+                    @for (int i = 0; i < 20; i++)
+                    {
+                        <div class="viz-bar" style="animation-delay: @(i * 0.05)s"></div>
+                    }
+                </div>
+            }
+        </div>
+
+        <!-- Track Info -->
+        <div class="audio-track-display">
+            <div class="audio-track-title">@CurrentFile.Title</div>
+            <div class="audio-track-ext">@CurrentFile.Extension &bull; @CurrentFile.DisplaySize</div>
+        </div>
+
+        <!-- Progress Bar -->
+        <div class="audio-progress-wrap">
+            <span class="audio-time">@FormatTime(CurrentTime)</span>
+            <div class="audio-progress-bar" @onclick="HandleSeek">
+                <div class="audio-progress-fill"
+                     style="width: @ProgressPercent.ToString("F1", System.Globalization.CultureInfo.InvariantCulture)%">
+                </div>
+                <div class="audio-progress-thumb"
+                     style="left: @ProgressPercent.ToString("F1", System.Globalization.CultureInfo.InvariantCulture)%">
+                </div>
+            </div>
+            <span class="audio-time">@FormatTime(Duration)</span>
+        </div>
+
+        <!-- Controls -->
+        <div class="audio-controls">
+            <button class="audio-ctrl-btn @(IsShuffle ? "active" : "")"
+                    @onclick="OnShuffle" title="Shuffle">
+                <i class="ti ti-arrows-shuffle" aria-hidden="true"></i>
+            </button>
+
+            <button class="audio-ctrl-btn audio-ctrl-nav"
+                    @onclick="HandlePrev"
+                    disabled="@(!CanGoPrev && !IsShuffle)"
+                    title="Previous">
+                <i class="ti ti-player-skip-back-filled" aria-hidden="true"></i>
+            </button>
+
+            <button class="audio-ctrl-btn audio-ctrl-play"
+                    @onclick="TogglePlay"
+                    title="@(IsPlaying ? "Pause" : "Play")">
+                <i class="ti @(IsPlaying ? "ti-player-pause-filled" : "ti-player-play-filled")"
+                   aria-hidden="true"></i>
+            </button>
+
+            <button class="audio-ctrl-btn audio-ctrl-nav"
+                    @onclick="HandleNext"
+                    disabled="@(!CanGoNext && !IsShuffle && !IsRepeat)"
+                    title="Next">
+                <i class="ti ti-player-skip-forward-filled" aria-hidden="true"></i>
+            </button>
+
+            <button class="audio-ctrl-btn @(IsRepeat ? "active" : "")"
+                    @onclick="OnRepeat" title="Repeat">
+                <i class="ti ti-repeat" aria-hidden="true"></i>
+            </button>
+        </div>
+
+        <!-- Volume Control -->
+        <div class="audio-volume-wrap">
+            <button class="audio-ctrl-btn" @onclick="ToggleMute" title="@(_isMuted ? "Unmute" : "Mute")">
+                <i class="ti @GetVolumeIcon()" aria-hidden="true"></i>
+            </button>
+            <input type="range"
+                   class="audio-volume-slider"
+                   min="0" max="100"
+                   value="@((int)(_isMuted ? 0 : _volume * 100))"
+                   @onchange="HandleVolumeChange" />
+            <span class="audio-time">@((int)(_isMuted ? 0 : _volume * 100))%</span>
+        </div>
+    }
+    else
+    {
+        <div class="canvas-empty">
+            <div class="audio-art">
+                <div class="audio-art-inner">
+                    <i class="ti ti-music" style="opacity:0.3" aria-hidden="true"></i>
+                </div>
+            </div>
+            <p style="margin-top:20px">Open a folder to load tracks</p>
+            <small>Supports MP3, WAV, OGG, FLAC, AAC, M4A</small>
+        </div>
+    }
+</div>
+
+@code {
+    [Parameter] public AudioFileModel? CurrentFile { get; set; }
+    [Parameter] public bool IsPlaying { get; set; }
+    [Parameter] public bool IsShuffle { get; set; }
+    [Parameter] public bool IsRepeat { get; set; }
+    [Parameter] public bool CanGoPrev { get; set; }
+    [Parameter] public bool CanGoNext { get; set; }
+    [Parameter] public double CurrentTime { get; set; }
+    [Parameter] public double Duration { get; set; }
+    [Parameter] public double ProgressPercent { get; set; }
+
+    [Parameter] public EventCallback OnPrev { get; set; }
+    [Parameter] public EventCallback OnNext { get; set; }
+    [Parameter] public EventCallback OnShuffle { get; set; }
+    [Parameter] public EventCallback OnRepeat { get; set; }
+    [Parameter] public EventCallback<bool> OnPlayStateChanged { get; set; }
+    [Parameter] public EventCallback<(double, double)> OnTimeUpdate { get; set; }
+    [Parameter] public EventCallback OnTrackEnded { get; set; }
+
+    private ElementReference _audioRef;
+
+    //---------------------------------------------------------------------------------------
+
+    private double _volume = 0.8;
+    private bool _isMuted = false;
+
+    private string GetVolumeIcon() => _isMuted || _volume == 0
+        ? "ti-volume-3"
+        : _volume < 0.5 ? "ti-volume" : "ti-volume-2";
+
+    private async Task ToggleMute()
+    {
+        _isMuted = !_isMuted;
+        await JS.InvokeVoidAsync("GraphicViewer.setVolume",
+            _audioRef, _isMuted ? 0 : _volume);
+    }
+
+    private async Task HandleVolumeChange(ChangeEventArgs e)
+    {
+        _volume = double.Parse(e.Value!.ToString()!) / 100.0;
+        _isMuted = _volume == 0;
+        await JS.InvokeVoidAsync("GraphicViewer.setVolume", _audioRef, _volume);
+    }
+
+    //---------------------------------------------------------------------------------------
+
+
+    private string FormatTime(double seconds)
+    {
+        var ts = TimeSpan.FromSeconds(seconds);
+        return ts.Hours > 0
+            ? $"{(int)ts.TotalHours}:{ts.Minutes:D2}:{ts.Seconds:D2}"
+            : $"{ts.Minutes}:{ts.Seconds:D2}";
+    }
+
+    private async Task TogglePlay()
+    {
+        if (IsPlaying)
+            await JS.InvokeVoidAsync("GraphicViewer.pauseVideo", _audioRef);
+        else
+            await JS.InvokeVoidAsync("GraphicViewer.playVideo", _audioRef);
+    }
+
+    private async Task HandlePrev()
+    {
+        await JS.InvokeVoidAsync("GraphicViewer.stopVideo", _audioRef);
+        await OnPrev.InvokeAsync();
+    }
+
+    private async Task HandleNext()
+    {
+        await JS.InvokeVoidAsync("GraphicViewer.stopVideo", _audioRef);
+        await OnNext.InvokeAsync();
+    }
+
+    private async Task HandleSeek(MouseEventArgs e)
+    {
+        if (Duration <= 0) return;
+        var percent = e.OffsetX / 500.0; // approximate bar width
+        var seekTime = percent * Duration;
+        await JS.InvokeVoidAsync("GraphicViewer.seekAudio", _audioRef, seekTime);
+    }
+
+    private async Task HandleTimeUpdate()
+    {
+        var times = await JS.InvokeAsync<double[]>(
+            "GraphicViewer.getAudioTimes", _audioRef);
+        if (times?.Length == 2)
+            await OnTimeUpdate.InvokeAsync((times[0], times[1]));
+    }
+
+    private async Task HandleMetadata()
+    {
+        var times = await JS.InvokeAsync<double[]>(
+            "GraphicViewer.getAudioTimes", _audioRef);
+        if (times?.Length == 2)
+            await OnTimeUpdate.InvokeAsync((times[0], times[1]));
+    }
+
+    private async Task HandlePlay()  => await OnPlayStateChanged.InvokeAsync(true);
+    private async Task HandlePause() => await OnPlayStateChanged.InvokeAsync(false);
+    private async Task HandleEnded() => await OnTrackEnded.InvokeAsync();
+}

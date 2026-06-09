@@ -15,6 +15,8 @@ builder.Services.AddScoped(sp => new HttpClient
 // Viewer services
 builder.Services.AddScoped<SvgViewerService>();
 builder.Services.AddScoped<ImageViewerService>();
-builder.Services.AddScoped<VideoPlayerService>();   // ← new
+builder.Services.AddScoped<VideoPlayerService>();
+builder.Services.AddScoped<AudioPlayerService>();
+builder.Services.AddScoped<YouTubePlayerService>();   // ← new
 
 await builder.Build().RunAsync();
