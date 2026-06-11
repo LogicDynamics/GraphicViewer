@@ -1,3 +1,4 @@
+wwwroot\css\app.css
 wwwroot\favicon.png
 wwwroot\icon-192.png
 wwwroot\index.html
@@ -47,7 +48,7 @@ wwwroot\lib\bootstrap\dist\js\bootstrap.js.map
 wwwroot\lib\bootstrap\dist\js\bootstrap.min.js
 wwwroot\lib\bootstrap\dist\js\bootstrap.min.js.map
 wwwroot\sample-data\weather.json
-wwwroot\css\app.css
+C:\Dev\GraphicViewer\GraphicViewer\GraphicViewer\wwwroot\css\app.css
 C:\Dev\GraphicViewer\GraphicViewer\GraphicViewer\wwwroot\index.html
 C:\Dev\GraphicViewer\GraphicViewer\GraphicViewer\wwwroot\js\interop.js
 C:\Dev\GraphicViewer\GraphicViewer\GraphicViewer\wwwroot\lib\bootstrap\dist\css\bootstrap-grid.css
@@ -95,4 +96,3 @@ C:\Dev\GraphicViewer\GraphicViewer\GraphicViewer\wwwroot\lib\bootstrap\dist\js\b
 C:\Dev\GraphicViewer\GraphicViewer\GraphicViewer\wwwroot\lib\bootstrap\dist\js\bootstrap.min.js
 C:\Dev\GraphicViewer\GraphicViewer\GraphicViewer\wwwroot\lib\bootstrap\dist\js\bootstrap.min.js.map
 C:\Dev\GraphicViewer\GraphicViewer\GraphicViewer\wwwroot\sample-data\weather.json
-C:\Dev\GraphicViewer\GraphicViewer\GraphicViewer\wwwroot\css\app.css

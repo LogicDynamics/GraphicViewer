@@ -1,12 +1,37 @@
 {
   "Version": 1,
   "WorkspaceRootPath": "C:\\Dev\\GraphicViewer\\GraphicViewer\\",
-  "Documents": [],
+  "Documents": [
+    {
+      "AbsoluteMoniker": "D:0:0:{F5F64A62-AD21-4544-3427-ABF9E9D64858}|GraphicViewer\\GraphicViewer.csproj|c:\\dev\\graphicviewer\\graphicviewer\\graphicviewer\\wwwroot\\css\\app.css||{A5401142-F49D-43DB-90B1-F57BA349E55C}",
+      "RelativeMoniker": "D:0:0:{F5F64A62-AD21-4544-3427-ABF9E9D64858}|GraphicViewer\\GraphicViewer.csproj|solutionrelative:graphicviewer\\wwwroot\\css\\app.css||{A5401142-F49D-43DB-90B1-F57BA349E55C}"
+    }
+  ],
   "DocumentGroupContainers": [
     {
       "Orientation": 0,
       "VerticalTabListWidth": 256,
-      "DocumentGroups": []
+      "DocumentGroups": [
+        {
+          "DockedWidth": 200,
+          "SelectedChildIndex": 0,
+          "Children": [
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "app.css",
+              "DocumentMoniker": "C:\\Dev\\GraphicViewer\\GraphicViewer\\GraphicViewer\\wwwroot\\css\\app.css",
+              "RelativeDocumentMoniker": "GraphicViewer\\wwwroot\\css\\app.css",
+              "ToolTip": "C:\\Dev\\GraphicViewer\\GraphicViewer\\GraphicViewer\\wwwroot\\css\\app.css",
+              "RelativeToolTip": "GraphicViewer\\wwwroot\\css\\app.css",
+              "ViewState": "AgIAAAQFAAAAAAAAAAAhwCAFAAAIAQAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003000|",
+              "WhenOpened": "2026-06-11T02:58:42.282Z",
+              "EditorCaption": ""
+            }
+          ]
+        }
+      ]
     }
   ]
 }

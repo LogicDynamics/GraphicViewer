@@ -98,6 +98,12 @@ window.GraphicViewer = {
         ];
     },
 
+    // Power Off button ------------------------------------------------------------
+    navigateTo: function (url) {
+        window.location.href = url;
+    },
+
+
     // ── localStorage (YouTube playlist persistence) ───────────────────────────
     setLocalStorage: function (key, value) {
         try {

@@ -1,0 +1,383 @@
+﻿## EXCEPTION
+Exception Type: ErrnoError
+Exception Message: ErrnoError
+The callstack context, if included, corresponds to the thread where this exception occurred. There is no need to identify this thread by other means.
+The top most frame in the callstack context should correspond to the place the exception message was thrown from. Code may or may not have been provided for it but can be requested.
+
+## CALLSTACK
+Thread ID: 0
+[1] Object.lookup [localhost꞉7221/_framework/dotnet.native.ikrs475e5v.js]
+This is the current user focused stack frame. The provided locals context corresponds to this stack frame, but you may evaluate expressions and retrieve code for any frame.
+[2] Object.lookup [localhost꞉7221/_framework/dotnet.native.ikrs475e5v.js]
+[3] Object.lookupNode [localhost꞉7221/_framework/dotnet.native.ikrs475e5v.js]
+[4] Object.mayCreate [localhost꞉7221/_framework/dotnet.native.ikrs475e5v.js]
+[5] Object.mknod [localhost꞉7221/_framework/dotnet.native.ikrs475e5v.js]
+[6] Object.mkdev [localhost꞉7221/_framework/dotnet.native.ikrs475e5v.js]
+[7] Object.createDefaultDevices [localhost꞉7221/_framework/dotnet.native.ikrs475e5v.js]
+[8] Object.staticInit [localhost꞉7221/_framework/dotnet.native.ikrs475e5v.js]
+[9] <anonymous> [localhost꞉7221/_framework/dotnet.native.ikrs475e5v.js]
+[10] ut [localhost꞉7221/_framework/dotnet.js]
+........18 more stack frames omitted.
+
+## LOCALS
+Variable: '_scriptDir' of type 'string' has value: 'https://localhost:7221/_framework/dotnet.native.ikrs475e5v.js'
+Variable: 'name' of type 'string' has value: 'null'
+Variable: 'parent' of type 'FSNode' is a complex object with child properties and has value: FSNode {parent: FSNode, mount: {…}, mounted: null, id: 5, name: 'dev', …}
+Variable: 'this' of type 'Object' is a complex object with child properties and has value: Object
+Variable: '___cxa_can_catch' of type 'undefined' has value: undefined
+Variable: '___cxa_decrement_exception_refcount' of type 'undefined' has value: undefined
+Variable: '___cxa_increment_exception_refcount' of type 'undefined' has value: undefined
+Variable: '___cxa_is_pointer_type' of type 'undefined' has value: undefined
+Variable: '___funcs_on_exit' of type 'undefined' has value: undefined
+Variable: '___syscall_statfs64' of type 'Function' is a complex object with child properties and has value: ƒ ___syscall_statfs64(path,size,buf){try{path=SYSCALLS.getStr(path);HEAP32[buf+4>>2]=4096;HEAP32[buf+40>>2]=4096;HEAP32[buf+8>>2]=1e6;HEAP32[buf+12>>2]=5e5;HEAP32[buf+16>>2]=5e5;HEAP32[buf+20>>2]=FS.n...
+Variable: '___wasm_call_ctors' of type 'undefined' has value: undefined
+Variable: '__ATEXIT__' of type 'Array' is a complex object with child properties and has value: (0) []
+Variable: '__ATINIT__' of type 'Array' is a complex object with child properties and has value: (0) []
+Variable: '__ATPOSTRUN__' of type 'Array' is a complex object with child properties and has value: (0) []
+Variable: '__ATPRERUN__' of type 'Array' is a complex object with child properties and has value: (0) []
+Variable: '__emscripten_runtime_keepalive_clear' of type 'Function' is a complex object with child properties and has value: ()=>{noExitRuntime=false;runtimeKeepaliveCounter=0}
+Variable: '_acos' of type 'undefined' has value: undefined
+Variable: '_acosf' of type 'undefined' has value: undefined
+Variable: '_acosh' of type 'undefined' has value: undefined
+Variable: '_acoshf' of type 'undefined' has value: undefined
+Variable: '_asin' of type 'undefined' has value: undefined
+Variable: '_asinf' of type 'undefined' has value: undefined
+Variable: '_asinh' of type 'undefined' has value: undefined
+Variable: '_asinhf' of type 'undefined' has value: undefined
+Variable: '_atan' of type 'undefined' has value: undefined
+Variable: '_atan2' of type 'undefined' has value: undefined
+Variable: '_atan2f' of type 'undefined' has value: undefined
+Variable: '_atanf' of type 'undefined' has value: undefined
+Variable: '_atanh' of type 'undefined' has value: undefined
+Variable: '_atanhf' of type 'undefined' has value: undefined
+Variable: '_cbrt' of type 'undefined' has value: undefined
+Variable: '_cbrtf' of type 'undefined' has value: undefined
+Variable: '_cos' of type 'undefined' has value: undefined
+Variable: '_cosf' of type 'undefined' has value: undefined
+Variable: '_cosh' of type 'undefined' has value: undefined
+Variable: '_coshf' of type 'undefined' has value: undefined
+Variable: '_emscripten_builtin_memalign' of type 'undefined' has value: undefined
+Variable: '_exit' of type 'Function' is a complex object with child properties and has value: (status,implicit)=>{EXITSTATUS=status;if(!keepRuntimeAlive()){exitRuntime()}_proc_exit(status)}
+Variable: '_exp' of type 'undefined' has value: undefined
+Variable: '_expf' of type 'undefined' has value: undefined
+Variable: '_fflush' of type 'undefined' has value: undefined
+Variable: '_fma' of type 'undefined' has value: undefined
+Variable: '_fmaf' of type 'undefined' has value: undefined
+Variable: '_fmod' of type 'undefined' has value: undefined
+Variable: '_fmodf' of type 'undefined' has value: undefined
+Variable: '_free' of type 'undefined' has value: undefined
+Variable: '_htonl' of type 'undefined' has value: undefined
+Variable: '_htons' of type 'undefined' has value: undefined
+Variable: '_log' of type 'undefined' has value: undefined
+Variable: '_log10' of type 'undefined' has value: undefined
+Variable: '_log10f' of type 'undefined' has value: undefined
+Variable: '_log2' of type 'undefined' has value: undefined
+Variable: '_log2f' of type 'undefined' has value: undefined
+Variable: '_logf' of type 'undefined' has value: undefined
+Variable: '_malloc' of type 'undefined' has value: undefined
+Variable: '_memalign' of type 'undefined' has value: undefined
+Variable: '_memset' of type 'undefined' has value: undefined
+Variable: '_mono_background_exec' of type 'undefined' has value: undefined
+Variable: '_mono_interp_pgo_load_table' of type 'undefined' has value: undefined
+Variable: '_mono_interp_pgo_save_table' of type 'undefined' has value: undefined
+Variable: '_mono_jiterp_adjust_abort_count' of type 'undefined' has value: undefined
+Variable: '_mono_jiterp_allocate_table_entry' of type 'undefined' has value: undefined
+Variable: '_mono_jiterp_begin_catch' of type 'undefined' has value: undefined
+Variable: '_mono_jiterp_boost_back_branch_target' of type 'undefined' has value: undefined
+Variable: '_mono_jiterp_box_ref' of type 'undefined' has value: undefined
+Variable: '_mono_jiterp_cast_v2' of type 'undefined' has value: undefined
+Variable: '_mono_jiterp_conv' of type 'undefined' has value: undefined
+Variable: '_mono_jiterp_debug_count' of type 'undefined' has value: undefined
+Variable: '_mono_jiterp_do_safepoint' of type 'undefined' has value: undefined
+Variable: '_mono_jiterp_encode_leb_signed_boundary' of type 'undefined' has value: undefined
+Variable: '_mono_jiterp_encode_leb52' of type 'undefined' has value: undefined
+Variable: '_mono_jiterp_encode_leb64_ref' of type 'undefined' has value: undefined
+Variable: '_mono_jiterp_end_catch' of type 'undefined' has value: undefined
+Variable: '_mono_jiterp_enum_hasflag' of type 'undefined' has value: undefined
+Variable: '_mono_jiterp_get_arg_offset' of type 'undefined' has value: undefined
+Variable: '_mono_jiterp_get_array_element_size' of type 'undefined' has value: undefined
+Variable: '_mono_jiterp_get_array_rank' of type 'undefined' has value: undefined
+Variable: '_mono_jiterp_get_counter' of type 'undefined' has value: undefined
+Variable: '_mono_jiterp_get_hashcode' of type 'undefined' has value: undefined
+Variable: '_mono_jiterp_get_interp_entry_func' of type 'undefined' has value: undefined
+Variable: '_mono_jiterp_get_member_offset' of type 'undefined' has value: undefined
+Variable: '_mono_jiterp_get_opcode_info' of type 'undefined' has value: undefined
+Variable: '_mono_jiterp_get_opcode_value_table_entry' of type 'undefined' has value: undefined
+Variable: '_mono_jiterp_get_option_as_int' of type 'undefined' has value: undefined
+Variable: '_mono_jiterp_get_options_as_json' of type 'undefined' has value: undefined
+Variable: '_mono_jiterp_get_options_version' of type 'undefined' has value: undefined
+Variable: '_mono_jiterp_get_polling_required_address' of type 'undefined' has value: undefined
+Variable: '_mono_jiterp_get_rejected_trace_count' of type 'undefined' has value: undefined
+Variable: '_mono_jiterp_get_signature_has_this' of type 'undefined' has value: undefined
+Variable: '_mono_jiterp_get_signature_param_count' of type 'undefined' has value: undefined
+Variable: '_mono_jiterp_get_signature_params' of type 'undefined' has value: undefined
+Variable: '_mono_jiterp_get_signature_return_type' of type 'undefined' has value: undefined
+Variable: '_mono_jiterp_get_simd_intrinsic' of type 'undefined' has value: undefined
+Variable: '_mono_jiterp_get_simd_opcode' of type 'undefined' has value: undefined
+Variable: '_mono_jiterp_get_size_of_stackval' of type 'undefined' has value: undefined
+Variable: '_mono_jiterp_get_trace_bailout_count' of type 'undefined' has value: undefined
+Variable: '_mono_jiterp_get_trace_hit_count' of type 'undefined' has value: undefined
+Variable: '_mono_jiterp_gettype_ref' of type 'undefined' has value: undefined
+Variable: '_mono_jiterp_has_parent_fast' of type 'undefined' has value: undefined
+Variable: '_mono_jiterp_imethod_to_ftnptr' of type 'undefined' has value: undefined
+Variable: '_mono_jiterp_implements_interface' of type 'undefined' has value: undefined
+Variable: '_mono_jiterp_implements_special_interface' of type 'undefined' has value: undefined
+Variable: '_mono_jiterp_increase_entry_count' of type 'undefined' has value: undefined
+Variable: '_mono_jiterp_initialize_table' of type 'undefined' has value: undefined
+Variable: '_mono_jiterp_interp_entry' of type 'undefined' has value: undefined
+Variable: '_mono_jiterp_interp_entry_prologue' of type 'undefined' has value: undefined
+Variable: '_mono_jiterp_is_enabled' of type 'undefined' has value: undefined
+Variable: '_mono_jiterp_is_imethod_var_address_taken' of type 'undefined' has value: undefined
+Variable: '_mono_jiterp_is_special_interface' of type 'undefined' has value: undefined
+Variable: '_mono_jiterp_ld_delegate_method_ptr' of type 'undefined' has value: undefined
+Variable: '_mono_jiterp_ldtsflda' of type 'undefined' has value: undefined
+Variable: '_mono_jiterp_localloc' of type 'undefined' has value: undefined
+Variable: '_mono_jiterp_modify_counter' of type 'undefined' has value: undefined
+Variable: '_mono_jiterp_object_has_component_size' of type 'undefined' has value: undefined
+Variable: '_mono_jiterp_object_unbox' of type 'undefined' has value: undefined
+Variable: '_mono_jiterp_overflow_check_i4' of type 'undefined' has value: undefined
+Variable: '_mono_jiterp_overflow_check_u4' of type 'undefined' has value: undefined
+Variable: '_mono_jiterp_parse_option' of type 'undefined' has value: undefined
+Variable: '_mono_jiterp_placeholder_jit_call' of type 'undefined' has value: undefined
+Variable: '_mono_jiterp_placeholder_trace' of type 'undefined' has value: undefined
+Variable: '_mono_jiterp_prof_enter' of type 'undefined' has value: undefined
+Variable: '_mono_jiterp_prof_leave' of type 'undefined' has value: undefined
+Variable: '_mono_jiterp_prof_samplepoint' of type 'undefined' has value: undefined
+Variable: '_mono_jiterp_register_jit_call_thunk' of type 'undefined' has value: undefined
+Variable: '_mono_jiterp_relop_fp' of type 'undefined' has value: undefined
+Variable: '_mono_jiterp_set_object_field' of type 'undefined' has value: undefined
+Variable: '_mono_jiterp_stackval_from_data' of type 'undefined' has value: undefined
+Variable: '_mono_jiterp_stackval_to_data' of type 'undefined' has value: undefined
+Variable: '_mono_jiterp_stelem_ref' of type 'undefined' has value: undefined
+Variable: '_mono_jiterp_tlqueue_add' of type 'undefined' has value: undefined
+Variable: '_mono_jiterp_tlqueue_clear' of type 'undefined' has value: undefined
+Variable: '_mono_jiterp_tlqueue_next' of type 'undefined' has value: undefined
+Variable: '_mono_jiterp_trace_bailout' of type 'undefined' has value: undefined
+Variable: '_mono_jiterp_try_get_hashcode' of type 'undefined' has value: undefined
+Variable: '_mono_jiterp_try_newarr' of type 'undefined' has value: undefined
+Variable: '_mono_jiterp_try_newobj_inlined' of type 'undefined' has value: undefined
+Variable: '_mono_jiterp_try_newstr' of type 'undefined' has value: undefined
+Variable: '_mono_jiterp_type_get_raw_value_size' of type 'undefined' has value: undefined
+Variable: '_mono_jiterp_type_is_byref' of type 'undefined' has value: undefined
+Variable: '_mono_jiterp_type_to_ldind' of type 'undefined' has value: undefined
+Variable: '_mono_jiterp_type_to_stind' of type 'undefined' has value: undefined
+Variable: '_mono_jiterp_value_copy' of type 'undefined' has value: undefined
+Variable: '_mono_jiterp_write_number_unaligned' of type 'undefined' has value: undefined
+Variable: '_mono_llvm_cpp_catch_exception' of type 'undefined' has value: undefined
+Variable: '_mono_print_method_from_ip' of type 'undefined' has value: undefined
+Variable: '_mono_wasm_add_assembly' of type 'undefined' has value: undefined
+Variable: '_mono_wasm_add_satellite_assembly' of type 'undefined' has value: undefined
+Variable: '_mono_wasm_assembly_find_class' of type 'undefined' has value: undefined
+Variable: '_mono_wasm_assembly_find_method' of type 'undefined' has value: undefined
+Variable: '_mono_wasm_assembly_load' of type 'undefined' has value: undefined
+Variable: '_mono_wasm_change_debugger_log_level' of type 'undefined' has value: undefined
+Variable: '_mono_wasm_copy_managed_pointer' of type 'undefined' has value: undefined
+Variable: '_mono_wasm_deregister_root' of type 'undefined' has value: undefined
+Variable: '_mono_wasm_ds_exec' of type 'undefined' has value: undefined
+Variable: '_mono_wasm_exec_regression' of type 'undefined' has value: undefined
+Variable: '_mono_wasm_execute_timer' of type 'undefined' has value: undefined
+Variable: '_mono_wasm_exit' of type 'undefined' has value: undefined
+Variable: '_mono_wasm_f64_to_i52' of type 'undefined' has value: undefined
+Variable: '_mono_wasm_f64_to_u52' of type 'undefined' has value: undefined
+Variable: '_mono_wasm_gc_lock' of type 'undefined' has value: undefined
+Variable: '_mono_wasm_gc_unlock' of type 'undefined' has value: undefined
+Variable: '_mono_wasm_get_f32_unaligned' of type 'undefined' has value: undefined
+Variable: '_mono_wasm_get_f64_unaligned' of type 'undefined' has value: undefined
+Variable: '_mono_wasm_get_i32_unaligned' of type 'undefined' has value: undefined
+Variable: '_mono_wasm_getenv' of type 'undefined' has value: undefined
+Variable: '_mono_wasm_i52_to_f64' of type 'undefined' has value: undefined
+Variable: '_mono_wasm_init_finalizer_thread' of type 'undefined' has value: undefined
+Variable: '_mono_wasm_intern_string_ref' of type 'undefined' has value: undefined
+Variable: '_mono_wasm_invoke_jsexport' of type 'undefined' has value: undefined
+Variable: '_mono_wasm_is_zero_page_reserved' of type 'undefined' has value: undefined
+Variable: '_mono_wasm_load_icu_data' of type 'undefined' has value: undefined
+Variable: '_mono_wasm_load_runtime' of type 'undefined' has value: undefined
+Variable: '_mono_wasm_method_get_full_name' of type 'undefined' has value: undefined
+Variable: '_mono_wasm_method_get_name' of type 'undefined' has value: undefined
+Variable: '_mono_wasm_method_get_name_ex' of type 'undefined' has value: undefined
+Variable: '_mono_wasm_parse_runtime_options' of type 'undefined' has value: undefined
+Variable: '_mono_wasm_read_as_bool_or_null_unsafe' of type 'undefined' has value: undefined
+Variable: '_mono_wasm_register_root' of type 'undefined' has value: undefined
+Variable: '_mono_wasm_send_dbg_command' of type 'undefined' has value: undefined
+Variable: '_mono_wasm_send_dbg_command_with_parms' of type 'undefined' has value: undefined
+Variable: '_mono_wasm_set_is_debugger_attached' of type 'undefined' has value: undefined
+Variable: '_mono_wasm_set_main_args' of type 'undefined' has value: undefined
+Variable: '_mono_wasm_setenv' of type 'undefined' has value: undefined
+Variable: '_mono_wasm_strdup' of type 'undefined' has value: undefined
+Variable: '_mono_wasm_string_from_utf16_ref' of type 'undefined' has value: undefined
+Variable: '_mono_wasm_string_get_data_ref' of type 'undefined' has value: undefined
+Variable: '_mono_wasm_u52_to_f64' of type 'undefined' has value: undefined
+Variable: '_mono_wasm_write_managed_pointer_unsafe' of type 'undefined' has value: undefined
+Variable: '_ntohs' of type 'undefined' has value: undefined
+Variable: '_posix_memalign' of type 'undefined' has value: undefined
+Variable: '_pow' of type 'undefined' has value: undefined
+Variable: '_powf' of type 'undefined' has value: undefined
+Variable: '_proc_exit' of type 'Function' is a complex object with child properties and has value: code=>{EXITSTATUS=code;if(!keepRuntimeAlive()){Module["onExit"]?.(code);ABORT=true}quit_(code,new ExitStatus(code))}
+Variable: '_sbrk' of type 'undefined' has value: undefined
+Variable: '_setThrew' of type 'undefined' has value: undefined
+Variable: '_sin' of type 'undefined' has value: undefined
+Variable: '_sinf' of type 'undefined' has value: undefined
+Variable: '_sinh' of type 'undefined' has value: undefined
+Variable: '_sinhf' of type 'undefined' has value: undefined
+Variable: '_tan' of type 'undefined' has value: undefined
+Variable: '_tanf' of type 'undefined' has value: undefined
+Variable: '_tanh' of type 'undefined' has value: undefined
+Variable: '_tanhf' of type 'undefined' has value: undefined
+Variable: 'abort' of type 'Function' is a complex object with child properties and has value: ƒ abort(what){Module["onAbort"]?.(what);what="Aborted("+what+")";err(what);ABORT=true;EXITSTATUS=1;what+=". Build with -sASSERTIONS for more info.";var e=new WebAssembly.RuntimeError(what);readyPromis...
+Variable: 'ABORT' of type 'boolean' has value: false
+Variable: 'addDays' of type 'Function' is a complex object with child properties and has value: (date,days)=>{var newDate=new Date(date.getTime());while(days>0){var leap=isLeapYear(newDate.getFullYear());var currentMonth=newDate.getMonth();var daysInCurrentMonth=(leap?MONTH_DAYS_LEAP:MONTH_DAYS_...
+Variable: 'addOnInit' of type 'Function' is a complex object with child properties and has value: ƒ addOnInit(cb){__ATINIT__.unshift(cb)}
+Variable: 'addOnPostRun' of type 'Function' is a complex object with child properties and has value: ƒ addOnPostRun(cb){__ATPOSTRUN__.unshift(cb)}
+Variable: 'addOnPreRun' of type 'Function' is a complex object with child properties and has value: ƒ addOnPreRun(cb){__ATPRERUN__.unshift(cb)}
+Variable: 'addRunDependency' of type 'Function' is a complex object with child properties and has value: ƒ addRunDependency(id){runDependencies++;Module["monitorRunDependencies"]?.(runDependencies)}
+Variable: 'alignMemory' of type 'Function' is a complex object with child properties and has value: (size,alignment)=>Math.ceil(size/alignment)*alignment
+Variable: 'arraySum' of type 'Function' is a complex object with child properties and has value: (array,index)=>{var sum=0;for(var i=0;i<=index;sum+=array[i++]){}return sum}
+Variable: 'assert' of type 'Function' is a complex object with child properties and has value: ƒ assert(condition,text){if(!condition){abort(text)}}
+Variable: 'asyncLoad' of type 'Function' is a complex object with child properties and has value: (url,onload,onerror,noRunDep)=>{var dep=!noRunDep?getUniqueRunDependency(`al ${url}`):"";readAsync(url,arrayBuffer=>{onload(new Uint8Array(arrayBuffer));if(dep)removeRunDependency(dep)},event=>{if(one...
+Variable: 'bigintToI53Checked' of type 'Function' is a complex object with child properties and has value: num=>num<MIN_INT53||num>MAX_INT53?NaN:Number(num)
+Variable: 'calledRun' of type 'undefined' has value: undefined
+Variable: 'callRuntimeCallbacks' of type 'Function' is a complex object with child properties and has value: callbacks=>{while(callbacks.length>0){callbacks.shift()(Module)}}
+Variable: 'callUserCallback' of type 'Function' is a complex object with child properties and has value: func=>{if(runtimeExited||ABORT){return}try{func();maybeExit()}catch(e){handleException(e)}}
+Variable: 'ccall' of type 'Function' is a complex object with child properties and has value: (ident,returnType,argTypes,args,opts)=>{var toC={"string":str=>{var ret=0;if(str!==null&&str!==undefined&&str!==0){ret=stringToUTF8OnStack(str)}return ret},"array":arr=>{var ret=stackAlloc(arr.length)...
+Variable: 'convertJsFunctionToWasm' of type 'Function' is a complex object with child properties and has value: (func,sig)=>{if(typeof WebAssembly.Function=="function"){return new WebAssembly.Function(sigToWasmTypes(sig),func)}var typeSectionBody=[1];generateFuncType(sig,typeSectionBody);var bytes=[0,97,115,109...
+Variable: 'dataURIPrefix' of type 'string' has value: 'data:application/octet-stream;base64,'
+Variable: 'dependenciesFulfilled' of type 'object' has value: null
+Variable: 'DNS' of type 'Object' is a complex object with child properties and has value: {address_map: {…}, lookup_name: ƒ, lookup_addr: ƒ}
+Variable: 'doReadv' of type 'Function' is a complex object with child properties and has value: (stream,iov,iovcnt,offset)=>{var ret=0;for(var i=0;i<iovcnt;i++){var ptr=HEAPU32[iov>>2];var len=HEAPU32[iov+4>>2];iov+=8;var curr=FS.read(stream,HEAP8,ptr,len,offset);if(curr<0)return-1;ret+=curr;if(...
+Variable: 'doWritev' of type 'Function' is a complex object with child properties and has value: (stream,iov,iovcnt,offset)=>{var ret=0;for(var i=0;i<iovcnt;i++){var ptr=HEAPU32[iov>>2];var len=HEAPU32[iov+4>>2];iov+=8;var curr=FS.write(stream,HEAP8,ptr,len,offset);if(curr<0)return-1;ret+=curr;if...
+Variable: 'ENV' of type 'Object' is a complex object with child properties and has value: {}
+Variable: 'ENVIRONMENT_IS_NODE' of type 'boolean' has value: false
+Variable: 'ENVIRONMENT_IS_WEB' of type 'boolean' has value: true
+Variable: 'ENVIRONMENT_IS_WORKER' of type 'boolean' has value: false
+Variable: 'err' of type 'Function' is a complex object with child properties and has value: e=>{console.error(e||"(null)"),yt()}
+Variable: 'exceptionCaught' of type 'Array' is a complex object with child properties and has value: (0) []
+Variable: 'ExceptionInfo' of type 'Function' is a complex object with child properties and has value: class ExceptionInfo{constructor(excPtr){this.excPtr=excPtr;this.ptr=excPtr-24}set_type(type){HEAPU32[this.ptr+4>>2]=type}get_type(){return HEAPU32[this.ptr+4>>2]}set_destructor(destructor){HEAPU32[thi...
+Variable: 'exceptionLast' of type 'number' has value: 0
+Variable: 'exitRuntime' of type 'Function' is a complex object with child properties and has value: ƒ exitRuntime(){___funcs_on_exit();callRuntimeCallbacks(__ATEXIT__);FS.quit();TTY.shutdown();runtimeExited=true}
+Variable: 'ExitStatus' of type 'Function' is a complex object with child properties and has value: ƒ ExitStatus(status){this.name="ExitStatus";this.message=`Program terminated with exit(${status})`;this.status=status}
+Variable: 'EXITSTATUS' of type 'undefined' has value: undefined
+Variable: 'findMatchingCatch' of type 'Function' is a complex object with child properties and has value: args=>{var thrown=exceptionLast;if(!thrown){setTempRet0(0);return 0}var info=new ExceptionInfo(thrown);info.set_adjusted_ptr(thrown);var thrownType=info.get_type();if(!thrownType){setTempRet0(0);retur...
+Variable: 'freeTableIndexes' of type 'Array' is a complex object with child properties and has value: (0) []
+Variable: 'fs' of type 'undefined' has value: undefined
+Variable: 'FS' of type 'Object' is a complex object with child properties and has value: {root: FSNode, mounts: Array(0), devices: {…}, streams: Array(0), nextInode: 6, …}
+Variable: 'FS_createDataFile' of type 'Function' is a complex object with child properties and has value: (parent,name,fileData,canRead,canWrite,canOwn)=>{FS.createDataFile(parent,name,fileData,canRead,canWrite,canOwn)}
+Variable: 'FS_getMode' of type 'Function' is a complex object with child properties and has value: (canRead,canWrite)=>{var mode=0;if(canRead)mode|=292|73;if(canWrite)mode|=146;return mode}
+Variable: 'FS_handledByPreloadPlugin' of type 'Function' is a complex object with child properties and has value: (byteArray,fullname,finish,onerror)=>{if(typeof Browser!="undefined")Browser.init();var handled=false;preloadPlugins.forEach(plugin=>{if(handled)return;if(plugin["canHandle"](fullname)){plugin["handle...
+Variable: 'FS_modeStringToFlags' of type 'Function' is a complex object with child properties and has value: str=>{var flagModes={"r":0,"r+":2,"w":512|64|1,"w+":512|64|2,"a":1024|64|1,"a+":1024|64|2};var flags=flagModes[str];if(typeof flags=="undefined"){throw new Error(`Unknown file open mode: ${str}`)}retu...
+Variable: 'FS_stdin_getChar' of type 'Function' is a complex object with child properties and has value: ()=>{if(!FS_stdin_getChar_buffer.length){var result=null;if(ENVIRONMENT_IS_NODE){var BUFSIZE=256;var buf=Buffer.alloc(BUFSIZE);var bytesRead=0;var fd=process.stdin.fd;try{bytesRead=fs.readSync(fd,buf)...
+Variable: 'FS_stdin_getChar_buffer' of type 'Array' is a complex object with child properties and has value: (0) []
+Variable: 'functionsInTableMap' of type 'undefined' has value: undefined
+Variable: 'generateFuncType' of type 'Function' is a complex object with child properties and has value: (sig,target)=>{var sigRet=sig.slice(0,1);var sigParam=sig.slice(1);var typeCodes={"i":127,"p":127,"j":126,"f":125,"d":124,"e":111};target.push(96);uleb128Encode(sigParam.length,target);for(var i=0;i<s...
+Variable: 'getBinaryPromise' of type 'Function' is a complex object with child properties and has value: ƒ getBinaryPromise(binaryFile){if(!wasmBinary&&(ENVIRONMENT_IS_WEB||ENVIRONMENT_IS_WORKER)){if(typeof fetch=="function"&&!isFileURI(binaryFile)){return fetch(binaryFile,{credentials:"same-origin"}).th...
+Variable: 'getBinarySync' of type 'Function' is a complex object with child properties and has value: ƒ getBinarySync(file){if(file==wasmBinaryFile&&wasmBinary){return new Uint8Array(wasmBinary)}if(readBinary){return readBinary(file)}throw"both async and sync fetching of the wasm failed"}
+Variable: 'getCFunc' of type 'Function' is a complex object with child properties and has value: ident=>{var func=Module["_"+ident];return func}
+Variable: 'getEmptyTableSlot' of type 'Function' is a complex object with child properties and has value: ()=>{if(freeTableIndexes.length){return freeTableIndexes.pop()}try{wasmTable.grow(1)}catch(err){if(!(err instanceof RangeError)){throw err}throw"Unable to grow wasm table. Set ALLOW_TABLE_GROWTH."}ret...
+Variable: 'getEnvStrings' of type 'Function' is a complex object with child properties and has value: ()=>{if(!getEnvStrings.strings){var lang=(typeof navigator=="object"&&navigator.languages&&navigator.languages[0]||"C").replace("-","_")+".UTF-8";var env={"USER":"web_user","LOGNAME":"web_user","PATH"...
+Variable: 'getExecutableName' of type 'Function' is a complex object with child properties and has value: ()=>thisProgram||"./this.program"
+Variable: 'getFunctionAddress' of type 'Function' is a complex object with child properties and has value: func=>{if(!functionsInTableMap){functionsInTableMap=new WeakMap;updateTableMap(0,wasmTable.length)}return functionsInTableMap.get(func)||0}
+Variable: 'getHeapMax' of type 'Function' is a complex object with child properties and has value: ()=>2147483648
+Variable: 'getSocketAddress' of type 'Function' is a complex object with child properties and has value: (addrp,addrlen,allowNull)=>{if(allowNull&&addrp===0)return null;var info=readSockaddr(addrp,addrlen);if(info.errno)throw new FS.ErrnoError(info.errno);info.addr=DNS.lookup_addr(info.addr)||info.addr;r...
+Variable: 'getSocketFromFD' of type 'Function' is a complex object with child properties and has value: fd=>{var socket=SOCKFS.getSocket(fd);if(!socket)throw new FS.ErrnoError(8);return socket}
+Variable: 'getUniqueRunDependency' of type 'Function' is a complex object with child properties and has value: ƒ getUniqueRunDependency(id){return id}
+Variable: 'getWasmTableEntry' of type 'Function' is a complex object with child properties and has value: funcPtr=>{var func=wasmTableMirror[funcPtr];if(!func){if(funcPtr>=wasmTableMirror.length)wasmTableMirror.length=funcPtr+1;wasmTableMirror[funcPtr]=func=wasmTable.get(funcPtr)}return func}
+Variable: 'growMemory' of type 'Function' is a complex object with child properties and has value: size=>{var b=wasmMemory.buffer;var pages=(size-b.byteLength+65535)/65536;try{wasmMemory.grow(pages);updateMemoryViews();return 1}catch(e){}}
+Variable: 'handleException' of type 'Function' is a complex object with child properties and has value: e=>{if(e instanceof ExitStatus||e=="unwind"){return EXITSTATUS}quit_(1,e)}
+Variable: 'HEAP16' of type 'undefined' has value: undefined
+Variable: 'HEAP32' of type 'undefined' has value: undefined
+Variable: 'HEAP64' of type 'undefined' has value: undefined
+Variable: 'HEAP8' of type 'undefined' has value: undefined
+Variable: 'HEAPF32' of type 'undefined' has value: undefined
+Variable: 'HEAPF64' of type 'undefined' has value: undefined
+Variable: 'HEAPU16' of type 'undefined' has value: undefined
+Variable: 'HEAPU32' of type 'undefined' has value: undefined
+Variable: 'HEAPU64' of type 'undefined' has value: undefined
+Variable: 'HEAPU8' of type 'undefined' has value: undefined
+Variable: 'inetNtop4' of type 'Function' is a complex object with child properties and has value: addr=>(addr&255)+"."+(addr>>8&255)+"."+(addr>>16&255)+"."+(addr>>24&255)
+Variable: 'inetNtop6' of type 'Function' is a complex object with child properties and has value: ints=>{var str="";var word=0;var longest=0;var lastzero=0;var zstart=0;var len=0;var i=0;var parts=[ints[0]&65535,ints[0]>>16,ints[1]&65535,ints[1]>>16,ints[2]&65535,ints[2]>>16,ints[3]&65535,ints[3]>...
+Variable: 'inetPton4' of type 'Function' is a complex object with child properties and has value: str=>{var b=str.split(".");for(var i=0;i<4;i++){var tmp=Number(b[i]);if(isNaN(tmp))return null;b[i]=tmp}return(b[0]|b[1]<<8|b[2]<<16|b[3]<<24)>>>0}
+Variable: 'inetPton6' of type 'Function' is a complex object with child properties and has value: str=>{var words;var w,offset,z;var valid6regx=/^((?=.*::)(?!.*::.+::)(::)?([\dA-F]{1,4}:(:|\b)|){5}|([\dA-F]{1,4}:){6})((([\dA-F]{1,4}((?!\3)::|:\b|$))|(?!\2\3)){2}|(((2[0-4]|1\d|[1-9])?\d|25[0-5])\.?...
+Variable: 'initRandomFill' of type 'Function' is a complex object with child properties and has value: ()=>{if(typeof crypto=="object"&&typeof crypto["getRandomValues"]=="function"){return view=>crypto.getRandomValues(view)}else if(ENVIRONMENT_IS_NODE){try{var crypto_module=require("crypto");var random...
+Variable: 'initRuntime' of type 'Function' is a complex object with child properties and has value: ƒ initRuntime(){runtimeInitialized=true;if(!Module["noFSInit"]&&!FS.init.initialized)FS.init();FS.ignorePermissions=false;TTY.init();SOCKFS.root=FS.mount(SOCKFS,{},null);callRuntimeCallbacks(__ATINIT_...
+Variable: 'instantiateArrayBuffer' of type 'Function' is a complex object with child properties and has value: ƒ instantiateArrayBuffer(binaryFile,imports,receiver){return getBinaryPromise(binaryFile).then(binary=>WebAssembly.instantiate(binary,imports)).then(receiver,reason=>{err(`failed to asynchronously pre...
+Variable: 'instantiateAsync' of type 'Function' is a complex object with child properties and has value: ƒ instantiateAsync(binary,binaryFile,imports,callback){if(!binary&&typeof WebAssembly.instantiateStreaming=="function"&&!isDataURI(binaryFile)&&!isFileURI(binaryFile)&&!ENVIRONMENT_IS_NODE&&typeof fet...
+Variable: 'intArrayFromString' of type 'Function' is a complex object with child properties and has value: ƒ intArrayFromString(stringy,dontAddNull,length){var len=length>0?length:lengthBytesUTF8(stringy)+1;var u8array=new Array(len);var numBytesWritten=stringToUTF8Array(stringy,u8array,0,u8array.length);i...
+Variable: 'isDataURI' of type 'Function' is a complex object with child properties and has value: filename=>filename.startsWith(dataURIPrefix)
+Variable: 'isFileURI' of type 'Function' is a complex object with child properties and has value: filename=>filename.startsWith("file://")
+Variable: 'isLeapYear' of type 'Function' is a complex object with child properties and has value: year=>year%4===0&&(year%100!==0||year%400===0)
+Variable: 'jstoi_q' of type 'Function' is a complex object with child properties and has value: str=>parseInt(str)
+Variable: 'keepRuntimeAlive' of type 'Function' is a complex object with child properties and has value: ()=>noExitRuntime||runtimeKeepaliveCounter>0
+Variable: 'lengthBytesUTF8' of type 'Function' is a complex object with child properties and has value: str=>{var len=0;for(var i=0;i<str.length;++i){var c=str.charCodeAt(i);if(c<=127){len++}else if(c<=2047){len+=2}else if(c>=55296&&c<=57343){len+=4;++i}else{len+=3}}return len}
+Variable: 'MAX_INT53' of type 'number' has value: 9007199254740992
+Variable: 'maybeExit' of type 'Function' is a complex object with child properties and has value: ()=>{if(runtimeExited){return}if(!keepRuntimeAlive()){try{_exit(EXITSTATUS)}catch(e){handleException(e)}}}
+Variable: 'MEMFS' of type 'Object' is a complex object with child properties and has value: {ops_table: {…}, mount: ƒ, createNode: ƒ, getFileDataAsTypedArray: ƒ, expandFileStorage: ƒ, …}
+Variable: 'MIN_INT53' of type 'number' has value: -9007199254740992
+Variable: 'mmapAlloc' of type 'Function' is a complex object with child properties and has value: size=>{size=alignMemory(size,65536);var ptr=_emscripten_builtin_memalign(65536,size);if(!ptr)return 0;return zeroMemory(ptr,size)}
+Variable: 'Module' of type 'Object' is a complex object with child properties and has value: {config: {…}, onConfigLoaded: ƒ, onDownloadResourceProgress: ƒ, out: ƒ, err: ƒ, …}
+Variable: 'MONTH_DAYS_LEAP' of type 'Array' is a complex object with child properties and has value: (12) [31, 29, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31]
+Variable: 'MONTH_DAYS_LEAP_CUMULATIVE' of type 'Array' is a complex object with child properties and has value: (12) [0, 31, 60, 91, 121, 152, 182, 213, 244, 274, 305, 335]
+Variable: 'MONTH_DAYS_REGULAR' of type 'Array' is a complex object with child properties and has value: (12) [31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31]
+Variable: 'MONTH_DAYS_REGULAR_CUMULATIVE' of type 'Array' is a complex object with child properties and has value: (12) [0, 31, 59, 90, 120, 151, 181, 212, 243, 273, 304, 334]
+Variable: 'nodePath' of type 'undefined' has value: undefined
+Variable: 'noExitRuntime' of type 'boolean' has value: false
+Variable: 'nowIsMonotonic' of type 'number' has value: 1
+Variable: 'out' of type 'Function' is a complex object with child properties and has value: e=>_t.indexOf(e)<0&&console.log(e)
+Variable: 'PATH' of type 'Object' is a complex object with child properties and has value: {isAbs: ƒ, splitPath: ƒ, normalizeArray: ƒ, normalize: ƒ, dirname: ƒ, …}
+Variable: 'PATH_FS' of type 'Object' is a complex object with child properties and has value: {resolve: ƒ, relative: ƒ}
+Variable: 'postRun' of type 'Function' is a complex object with child properties and has value: ƒ postRun(){if(Module["postRun"]){if(typeof Module["postRun"]=="function")Module["postRun"]=[Module["postRun"]];while(Module["postRun"].length){addOnPostRun(Module["postRun"].shift())}}callRuntimeCall...
+Variable: 'preloadPlugins' of type 'Array' is a complex object with child properties and has value: (0) []
+Variable: 'preRun' of type 'Function' is a complex object with child properties and has value: ƒ preRun(){if(Module["preRun"]){if(typeof Module["preRun"]=="function")Module["preRun"]=[Module["preRun"]];while(Module["preRun"].length){addOnPreRun(Module["preRun"].shift())}}callRuntimeCallbacks(__...
+Variable: 'quit_' of type 'Function' is a complex object with child properties and has value: (status,toThrow)=>{throw toThrow}
+Variable: 'randomFill' of type 'Function' is a complex object with child properties and has value: view=>(randomFill=initRandomFill())(view)
+Variable: 'read_' of type 'Function' is a complex object with child properties and has value: url=>{var xhr=new XMLHttpRequest;xhr.open("GET",url,false);xhr.send(null);return xhr.responseText}
+Variable: 'readAsync' of type 'Function' is a complex object with child properties and has value: (url,onload,onerror)=>{var xhr=new XMLHttpRequest;xhr.open("GET",url,true);xhr.responseType="arraybuffer";xhr.onload=()=>{if(xhr.status==200||xhr.status==0&&xhr.response){onload(xhr.response);return}o...
+Variable: 'readBinary' of type 'undefined' has value: undefined
+Variable: 'readI53FromI64' of type 'Function' is a complex object with child properties and has value: ptr=>HEAPU32[ptr>>2]+HEAP32[ptr+4>>2]*4294967296
+Variable: 'readSockaddr' of type 'Function' is a complex object with child properties and has value: (sa,salen)=>{var family=HEAP16[sa>>1];var port=_ntohs(HEAPU16[sa+2>>1]);var addr;switch(family){case 2:if(salen!==16){return{errno:28}}addr=HEAP32[sa+4>>2];addr=inetNtop4(addr);break;case 10:if(salen!...
+Variable: 'readyPromiseReject' of type 'Function' is a complex object with child properties and has value: ƒ ()
+Variable: 'readyPromiseResolve' of type 'Function' is a complex object with child properties and has value: ƒ ()
+Variable: 'removeRunDependency' of type 'Function' is a complex object with child properties and has value: ƒ removeRunDependency(id){runDependencies--;Module["monitorRunDependencies"]?.(runDependencies);if(runDependencies==0){if(runDependencyWatcher!==null){clearInterval(runDependencyWatcher);runDependency...
+Variable: 'require' of type 'undefined' has value: undefined
+Variable: 'run' of type 'Function' is a complex object with child properties and has value: ƒ run(){if(runDependencies>0){return}preRun();if(runDependencies>0){return}function doRun(){if(calledRun)return;calledRun=true;Module["calledRun"]=true;if(ABORT)return;initRuntime();readyPromiseResolv...
+Variable: 'runDependencies' of type 'number' has value: 0
+Variable: 'runDependencyWatcher' of type 'object' has value: null
+Variable: 'runtimeExited' of type 'boolean' has value: false
+Variable: 'runtimeInitialized' of type 'boolean' has value: false
+Variable: 'runtimeKeepaliveCounter' of type 'number' has value: 0
+Variable: 'runtimeKeepalivePop' of type 'Function' is a complex object with child properties and has value: ()=>{runtimeKeepaliveCounter-=1}
+Variable: 'runtimeKeepalivePush' of type 'Function' is a complex object with child properties and has value: ()=>{runtimeKeepaliveCounter+=1}
+Variable: 'scriptDirectory' of type 'string' has value: 'https://localhost:7221/_framework/'
+Variable: 'setTempRet0' of type 'undefined' has value: undefined
+Variable: 'setWasmTableEntry' of type 'Function' is a complex object with child properties and has value: (idx,func)=>{wasmTable.set(idx,func);wasmTableMirror[idx]=wasmTable.get(idx)}
+Variable: 'sigToWasmTypes' of type 'Function' is a complex object with child properties and has value: sig=>{var typeNames={"i":"i32","j":"i64","f":"f32","d":"f64","e":"externref","p":"i32"};var type={parameters:[],results:sig[0]=="v"?[]:[typeNames[sig[0]]]};for(var i=1;i<sig.length;++i){type.parameter...
+Variable: 'SOCKFS' of type 'Object' is a complex object with child properties and has value: {mount: ƒ, createSocket: ƒ, getSocket: ƒ, stream_ops: {…}, nextname: ƒ, …}
+Variable: 'stackAlloc' of type 'undefined' has value: undefined
+Variable: 'stackRestore' of type 'undefined' has value: undefined
+Variable: 'stackSave' of type 'undefined' has value: undefined
+Variable: 'stringToAscii' of type 'Function' is a complex object with child properties and has value: (str,buffer)=>{for(var i=0;i<str.length;++i){HEAP8[buffer++]=str.charCodeAt(i)}HEAP8[buffer]=0}
+Variable: 'stringToUTF8' of type 'Function' is a complex object with child properties and has value: (str,outPtr,maxBytesToWrite)=>stringToUTF8Array(str,HEAPU8,outPtr,maxBytesToWrite)
+Variable: 'stringToUTF8Array' of type 'Function' is a complex object with child properties and has value: (str,heap,outIdx,maxBytesToWrite)=>{if(!(maxBytesToWrite>0))return 0;var startIdx=outIdx;var endIdx=outIdx+maxBytesToWrite-1;for(var i=0;i<str.length;++i){var u=str.charCodeAt(i);if(u>=55296&&u<=57343...
+Variable: 'stringToUTF8OnStack' of type 'Function' is a complex object with child properties and has value: str=>{var size=lengthBytesUTF8(str)+1;var ret=stackAlloc(size);stringToUTF8(str,ret,size);return ret}
+Variable: 'SYSCALLS' of type 'Object' is a complex object with child properties and has value: {DEFAULT_POLLMASK: 5, calculateAt: ƒ, doStat: ƒ, doMsync: ƒ, varargs: undefined, …}
+Variable: 'thisProgram' of type 'string' has value: './this.program'
+Variable: 'TTY' of type 'Object' is a complex object with child properties and has value: {ttys: Array(0), init: ƒ, shutdown: ƒ, register: ƒ, stream_ops: {…}, …}
+Variable: 'uleb128Encode' of type 'Function' is a complex object with child properties and has value: (n,target)=>{if(n<128){target.push(n)}else{target.push(n%128|128,n>>7)}}
+Variable: 'uncaughtExceptionCount' of type 'number' has value: 0
+Variable: 'updateMemoryViews' of type 'Function' is a complex object with child properties and has value: ƒ updateMemoryViews(){var b=wasmMemory.buffer;Module["HEAP8"]=HEAP8=new Int8Array(b);Module["HEAP16"]=HEAP16=new Int16Array(b);Module["HEAPU8"]=HEAPU8=new Uint8Array(b);Module["HEAPU16"]=HEAPU16=new U...
+Variable: 'updateTableMap' of type 'Function' is a complex object with child properties and has value: (offset,count)=>{if(functionsInTableMap){for(var i=offset;i<offset+count;i++){var item=getWasmTableEntry(i);if(item){functionsInTableMap.set(item,i)}}}}
+Variable: 'UTF8ArrayToString' of type 'Function' is a complex object with child properties and has value: (heapOrArray,idx,maxBytesToRead)=>{var endIdx=idx+maxBytesToRead;var endPtr=idx;while(heapOrArray[endPtr]&&!(endPtr>=endIdx))++endPtr;if(endPtr-idx>16&&heapOrArray.buffer&&UTF8Decoder){return UTF8Deco...
+Variable: 'UTF8Decoder' of type 'TextDecoder' is a complex object with child properties and has value: TextDecoder {encoding: 'utf-8', fatal: false, ignoreBOM: false}
+Variable: 'UTF8ToString' of type 'Function' is a complex object with child properties and has value: (ptr,maxBytesToRead)=>ptr?UTF8ArrayToString(HEAPU8,ptr,maxBytesToRead):""
+Variable: 'wasmBinary' of type 'undefined' has value: undefined
+Variable: 'wasmBinaryFile' of type 'string' has value: 'https://localhost:7221/_framework/dotnet.native.wasm'
+Variable: 'wasmExports' of type 'undefined' has value: undefined
+Variable: 'wasmImports' of type 'undefined' has value: undefined
+Variable: 'wasmMemory' of type 'undefined' has value: undefined
+Variable: 'wasmTable' of type 'undefined' has value: undefined
+Variable: 'wasmTableMirror' of type 'Array' is a complex object with child properties and has value: (0) []
+Variable: 'writeArrayToMemory' of type 'Function' is a complex object with child properties and has value: (array,buffer)=>{HEAP8.set(array,buffer)}
+Variable: 'writeSockaddr' of type 'Function' is a complex object with child properties and has value: (sa,family,addr,port,addrlen)=>{switch(family){case 2:addr=inetPton4(addr);zeroMemory(sa,16);if(addrlen){HEAP32[addrlen>>2]=16}HEAP16[sa>>1]=family;HEAP32[sa+4>>2]=addr;HEAP16[sa+2>>1]=_htons(port);br...
+Variable: 'ydayFromDate' of type 'Function' is a complex object with child properties and has value: date=>{var leap=isLeapYear(date.getFullYear());var monthDaysCumulative=leap?MONTH_DAYS_LEAP_CUMULATIVE:MONTH_DAYS_REGULAR_CUMULATIVE;var yday=monthDaysCumulative[date.getMonth()]+date.getDate()-1;retu...
+Variable: 'zeroMemory' of type 'Function' is a complex object with child properties and has value: (address,size)=>{HEAPU8.fill(0,address,address+size);return address}
+Variable: 'Module' of type '' is a complex object with child properties and has value: 
+Variable: 'Global' of type '' is a complex object with child properties and has value: 
+

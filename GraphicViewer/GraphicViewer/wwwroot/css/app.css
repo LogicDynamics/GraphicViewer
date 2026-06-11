@@ -841,7 +841,11 @@ html, body {
 .audio-controls {
     display: flex;
     align-items: center;
-    gap: 12px;
+    justify-content: center;
+    gap: 6px;
+    flex-wrap: nowrap;
+    width: 100%;
+    max-width: 480px;
 }
 
 .audio-ctrl-btn {
@@ -850,14 +854,17 @@ html, body {
     color: var(--text-secondary);
     cursor: pointer;
     font-size: 18px;
-    padding: 8px;
+    width: 36px;
+    height: 36px;
     border-radius: 50%;
     display: flex;
     align-items: center;
     justify-content: center;
+    flex-shrink: 0;
     transition: color 0.15s, background 0.15s;
 }
 
+   
 .audio-ctrl-btn:hover:not(:disabled) {
     color: var(--text-primary);
     background: var(--bg-hover);
@@ -873,21 +880,58 @@ html, body {
 }
 
 .audio-ctrl-nav {
-    font-size: 22px;
+    font-size: 18px;
+}
+
+.audio-ctrl-stop {
+    color: #ff5f57 !important;
+    border: 1px solid rgba(255,95,87,0.3) !important;
+    width: 36px;
+    height: 36px;
+    font-size: 18px;
+}
+
+.audio-ctrl-stop:hover {
+    background: rgba(255,95,87,0.1) !important;
+    border-color: rgba(255,95,87,0.6) !important;
 }
 
 .audio-ctrl-play {
-    width: 56px;
-    height: 56px;
-    font-size: 24px;
-    background: var(--accent-bg);
-    border: 1px solid var(--accent-border);
-    color: var(--accent);
+    width: 52px !important;
+    height: 52px !important;
+    font-size: 22px !important;
+    background: var(--accent-bg) !important;
+    border: 1.5px solid var(--accent-border) !important;
+    color: var(--accent) !important;
+    flex-shrink: 0;
 }
 
 .audio-ctrl-play:hover {
     background: rgba(79,142,247,0.25) !important;
-    color: var(--accent) !important;
+}
+
+/* Power button divider */
+.audio-ctrl-divider {
+    width: 1px;
+    height: 28px;
+    background: var(--border);
+    flex-shrink: 0;
+    margin: 0 2px;
+}
+
+/* Power off button */
+.audio-ctrl-power {
+    color: #ed1440 !important;
+    border: 1px solid rgba(237,20,64,0.35) !important;
+    background: rgba(237,20,64,0.08) !important;
+    width: 36px;
+    height: 36px;
+    font-size: 16px;
+}
+
+.audio-ctrl-power:hover {
+    background: rgba(237,20,64,0.18) !important;
+    border-color: rgba(237,20,64,0.6) !important;
 }
 
 /* ── Volume Control ────────────────────────────────────────────────── */
@@ -920,7 +964,40 @@ html, body {
     background: var(--border-hover);
 }
 
-/* --------------------------------------------------------------------------------------*/
+/* ----------------------------- AUDIO PLAYER (MP3) Update --------------------------------------------------*/
+.audio-ctrl-stop {
+    font-size: 18px;
+    color: var(--text-secondary);
+    background: transparent;
+    border: none;
+    padding: 8px;
+    border-radius: 50%;
+    cursor: pointer;
+    transition: color 0.15s, background 0.15s;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.audio-ctrl-stop:hover {
+    color: #ff5f57;
+    background: rgba(255,95,87,0.1);
+}
+
+/* ── Audio Controls Row fix ─────────────────────────────────────────── */
+.audio-controls {
+    display: flex;
+    align-items: center;
+    gap: 4px; /* was 12px — reduce gap so all 8 buttons fit */
+    flex-wrap: nowrap;
+    justify-content: center;
+    width: 100%;
+    max-width: 500px;
+}
+
+.audio-ctrl-nav {
+    font-size: 18px; /* was 22px — slightly smaller so they all fit */
+}
 /* --------------------------------------------------------------------------------------*/
 /* ═══════════════════════════════════════════════════════════════════
    YOUTUBE PLAYER — append these styles to wwwroot/css/app.css
@@ -1222,6 +1299,19 @@ html, body {
     padding: 32px 40px;
     gap: 36px;
     background: var(--bg-app);
+
+
+    /*-----------------------------------------------------------------------------------------------------*/
+    /*background-image: radial-gradient(ellipse at 50% 50%, rgba(237,20,64,0.07) 0%, transparent 50%), radial-gradient(ellipse at 80% 80%, rgba(40,200,64,0.04) 0%, transparent 60%);*/
+    /*-----------------------------------------------------------------------------------------------------*/
+    /*background-image: radial-gradient(ellipse at 50% 50%, rgba(40,200,64,0.09) 0%, transparent 50%), radial-gradient(ellipse at 80% 80%, rgba(40,200,64,0.04) 0%, transparent 60%);*/
+    /*-----------------------------------------------------------------------------------------------------*/
+    /*background-image: radial-gradient(ellipse at 20% 20%, rgba(79,142,247,0.06) 0%, transparent 60%), radial-gradient(ellipse at 80% 80%, rgba(40,200,64,0.04) 0%, transparent 60%);*/
+    /*-----------------------------------------------------------------------------------------------------*/
+    /*background-image: radial-gradient(ellipse at 20% 20%, rgba(79,142,247,0.06) 0%, transparent 60%), radial-gradient(ellipse at 80% 80%, rgba(40,200,64,0.04) 0%, transparent 60%);*/
+    /*-----------------------------------------------------------------------------------------------------*/
+    /*background-image: radial-gradient(ellipse at 20% 20%, rgba(79,142,247,0.10) 0%, transparent 60%), radial-gradient(ellipse at 80% 80%, rgba(40,200,64,0.09) 0%, transparent 60%), radial-gradient(ellipse at 50% 50%, rgba(237,100,20,0.06) 0%, transparent 50%);*/
+    /*-----------------------------------------------------------------------------------------------------*/
     background-image: radial-gradient(ellipse at 20% 20%, rgba(79,142,247,0.06) 0%, transparent 60%), radial-gradient(ellipse at 80% 80%, rgba(40,200,64,0.04) 0%, transparent 60%);
 }
 

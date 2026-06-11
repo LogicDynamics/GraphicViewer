@@ -4,7 +4,8 @@
 <div class="audio-stage">
     @if (CurrentFile is not null)
     {
-        <!-- Hidden audio element — we control it via JS -->
+        @* Hidden audio element — we control it via JS *@
+
         <audio @key="CurrentFile.ObjectUrl"
                @ref="_audioRef"
                src="@CurrentFile.ObjectUrl"
@@ -16,15 +17,17 @@
                @onended="HandleEnded">
         </audio>
 
-        <!-- Album Art / Visualizer -->
+
+        @* Album Art / Visualizer *@
+
         <div class="audio-art-wrap">
             <div class="audio-art @(IsPlaying ? "spinning" : "")">
                 <div class="audio-art-inner">
                     <i class="ti ti-music" aria-hidden="true"></i>
                 </div>
-            </div>
+            </div> 
 
-            <!-- Animated bars when playing -->
+            @* Animated bars when playing *@
             @if (IsPlaying)
             {
                 <div class="audio-viz-bars">
@@ -36,13 +39,13 @@
             }
         </div>
 
-        <!-- Track Info -->
+        @* Track Info *@
         <div class="audio-track-display">
             <div class="audio-track-title">@CurrentFile.Title</div>
             <div class="audio-track-ext">@CurrentFile.Extension &bull; @CurrentFile.DisplaySize</div>
         </div>
 
-        <!-- Progress Bar -->
+        @* Progress Bar *@
         <div class="audio-progress-wrap">
             <span class="audio-time">@FormatTime(CurrentTime)</span>
             <div class="audio-progress-bar" @onclick="HandleSeek">
@@ -56,47 +59,80 @@
             <span class="audio-time">@FormatTime(Duration)</span>
         </div>
 
-        <!-- Controls -->
+
+        @* Controls *@
         <div class="audio-controls">
             <button class="audio-ctrl-btn @(IsShuffle ? "active" : "")"
                     @onclick="OnShuffle" title="Shuffle">
                 <i class="ti ti-arrows-shuffle" aria-hidden="true"></i>
             </button>
 
+            @* Rewind ◁◁ — Previous track *@
             <button class="audio-ctrl-btn audio-ctrl-nav"
                     @onclick="HandlePrev"
                     disabled="@(!CanGoPrev && !IsShuffle)"
-                    title="Previous">
-                <i class="ti ti-player-skip-back-filled" aria-hidden="true"></i>
+                    title="Previous track">
+                <i class="ti ti-player-skip-back" aria-hidden="true"></i>
             </button>
 
+            @* Backward ◁◁ — Seek -10s *@
+            <button class="audio-ctrl-btn audio-ctrl-nav"
+                    @onclick="HandleSeekBack"
+                    title="Rewind 10s">
+                <i class="ti ti-player-track-prev" aria-hidden="true"></i>
+            </button>
+
+            @* Stop ☐ *@
+            <button class="audio-ctrl-btn audio-ctrl-stop"
+                    @onclick="HandleStop"
+                    title="Stop">
+                <i class="ti ti-player-stop" aria-hidden="true"></i>
+            </button>
+
+            @* Play / Pause ▷ ∥ *@
             <button class="audio-ctrl-btn audio-ctrl-play"
                     @onclick="TogglePlay"
                     title="@(IsPlaying ? "Pause" : "Play")">
-                <i class="ti @(IsPlaying ? "ti-player-pause-filled" : "ti-player-play-filled")"
-                   aria-hidden="true"></i>
+                <i class="ti @(IsPlaying ? "ti-player-pause" : "ti-player-play")" aria-hidden="true"></i>
             </button>
 
+            @* Fast Forward ▷▷ — Seek +10s *@
+            <button class="audio-ctrl-btn audio-ctrl-nav"
+                    @onclick="HandleSeekForward"
+                    title="Forward 10s">
+                <i class="ti ti-player-track-next" aria-hidden="true"></i>
+            </button>
+
+            @* Next track ▷▷ *@
             <button class="audio-ctrl-btn audio-ctrl-nav"
                     @onclick="HandleNext"
                     disabled="@(!CanGoNext && !IsShuffle && !IsRepeat)"
-                    title="Next">
-                <i class="ti ti-player-skip-forward-filled" aria-hidden="true"></i>
+                    title="Next track">
+                <i class="ti ti-player-skip-forward" aria-hidden="true"></i>
             </button>
 
             <button class="audio-ctrl-btn @(IsRepeat ? "active" : "")"
                     @onclick="OnRepeat" title="Repeat">
                 <i class="ti ti-repeat" aria-hidden="true"></i>
             </button>
+
+            @* --------------------------------------------------- *@
+            <div class="audio-ctrl-divider"></div>
+
+            <button class="audio-ctrl-btn audio-ctrl-power"
+                    @onclick="HandlePowerOff"
+                    title="Close player">
+                <i class="ti ti-power" aria-hidden="true"></i>
+            </button>
         </div>
 
-        <!-- Volume Control -->
+        @* Volume Control *@
         <div class="audio-volume-wrap">
-            <button class="audio-ctrl-btn" @onclick="ToggleMute" title="@(_isMuted ? "Unmute" : "Mute")">
+            <button class="audio-ctrl-btn" @onclick="ToggleMute"
+                    title="@(_isMuted ? "Unmute" : "Mute")">
                 <i class="ti @GetVolumeIcon()" aria-hidden="true"></i>
             </button>
-            <input type="range"
-                   class="audio-volume-slider"
+            <input type="range" class="audio-volume-slider"
                    min="0" max="100"
                    value="@((int)(_isMuted ? 0 : _volume * 100))"
                    @onchange="HandleVolumeChange" />
@@ -137,12 +173,10 @@
     [Parameter] public EventCallback OnTrackEnded { get; set; }
 
     private ElementReference _audioRef;
-
-    //---------------------------------------------------------------------------------------
-
     private double _volume = 0.8;
     private bool _isMuted = false;
 
+    // ── Volume ────────────────────────────────────────────────────────────────
     private string GetVolumeIcon() => _isMuted || _volume == 0
         ? "ti-volume-3"
         : _volume < 0.5 ? "ti-volume" : "ti-volume-2";
@@ -161,17 +195,7 @@
         await JS.InvokeVoidAsync("GraphicViewer.setVolume", _audioRef, _volume);
     }
 
-    //---------------------------------------------------------------------------------------
-
-
-    private string FormatTime(double seconds)
-    {
-        var ts = TimeSpan.FromSeconds(seconds);
-        return ts.Hours > 0
-            ? $"{(int)ts.TotalHours}:{ts.Minutes:D2}:{ts.Seconds:D2}"
-            : $"{ts.Minutes}:{ts.Seconds:D2}";
-    }
-
+    // ── Playback ──────────────────────────────────────────────────────────────
     private async Task TogglePlay()
     {
         if (IsPlaying)
@@ -180,6 +204,13 @@
             await JS.InvokeVoidAsync("GraphicViewer.playVideo", _audioRef);
     }
 
+    private async Task HandleStop()
+    {
+        await JS.InvokeVoidAsync("GraphicViewer.stopVideo", _audioRef);
+        await OnPlayStateChanged.InvokeAsync(false);
+    }
+
+    // ── Navigation ────────────────────────────────────────────────────────────
     private async Task HandlePrev()
     {
         await JS.InvokeVoidAsync("GraphicViewer.stopVideo", _audioRef);
@@ -192,14 +223,28 @@
         await OnNext.InvokeAsync();
     }
 
+    // ── Seeking ───────────────────────────────────────────────────────────────
+    private async Task HandleSeekBack()
+    {
+        await JS.InvokeVoidAsync("GraphicViewer.seekAudio", _audioRef,
+            Math.Max(0, CurrentTime - 10));
+    }
+
+    private async Task HandleSeekForward()
+    {
+        await JS.InvokeVoidAsync("GraphicViewer.seekAudio", _audioRef,
+            Math.Min(Duration, CurrentTime + 10));
+    }
+
     private async Task HandleSeek(MouseEventArgs e)
     {
         if (Duration <= 0) return;
-        var percent = e.OffsetX / 500.0; // approximate bar width
+        var percent = e.OffsetX / 500.0;
         var seekTime = percent * Duration;
         await JS.InvokeVoidAsync("GraphicViewer.seekAudio", _audioRef, seekTime);
     }
 
+    // ── Time / Metadata ───────────────────────────────────────────────────────
     private async Task HandleTimeUpdate()
     {
         var times = await JS.InvokeAsync<double[]>(
@@ -216,7 +261,25 @@
             await OnTimeUpdate.InvokeAsync((times[0], times[1]));
     }
 
-    private async Task HandlePlay()  => await OnPlayStateChanged.InvokeAsync(true);
+    // ── Divider and Power button ────────────────────────────────────────────────────────────────
+    private async Task HandlePowerOff()
+    {
+        await JS.InvokeVoidAsync("GraphicViewer.stopVideo", _audioRef);
+        await OnPlayStateChanged.InvokeAsync(false);
+        await JS.InvokeVoidAsync("GraphicViewer.navigateTo", "/");
+    }
+
+    // ── Events ────────────────────────────────────────────────────────────────
+    private async Task HandlePlay() => await OnPlayStateChanged.InvokeAsync(true);
     private async Task HandlePause() => await OnPlayStateChanged.InvokeAsync(false);
     private async Task HandleEnded() => await OnTrackEnded.InvokeAsync();
+
+    // ── Helpers ───────────────────────────────────────────────────────────────
+    private string FormatTime(double seconds)
+    {
+        var ts = TimeSpan.FromSeconds(seconds);
+        return ts.Hours > 0
+            ? $"{(int)ts.TotalHours}:{ts.Minutes:D2}:{ts.Seconds:D2}"
+            : $"{ts.Minutes}:{ts.Seconds:D2}";
+    }
 }
